@@ -1,6 +1,7 @@
 package primitives;
-
-public class Vector {
+import java.lang.Math.*;
+public class Vector
+{
     Point3D head;
     public Point3D getHead() {
         return head;
@@ -21,13 +22,46 @@ public class Vector {
         return java.util.Objects.equals(head, vector.head);
     }
 
-    public Vector add(Vector vector){};
-    public Vector substract(Vector vector){};
-    public Vector scale(double doub){};
-    public Vector crossProduct(Vector vector){};
-    public double dotProduct(Vector vector){};
-    public double lengthSquared(){};
-    public double length(){};
-    public Vector normalize(){};
-    public Vector normalized(){};
+    public Vector add(Vector vector){
+        return new Vector(new Point3D(new Coordinate(getHead().getX().coord+vector.getHead().getX().coord),
+                new Coordinate(getHead().getY().coord+vector.getHead().getY().coord),
+                new Coordinate(getHead().getZ().coord+vector.getHead().getZ().coord)));
+    };
+    public Vector substract(Vector vector){
+        return new Vector(new Point3D(new Coordinate(getHead().getX().coord-vector.getHead().getX().coord),
+                new Coordinate(getHead().getY().coord-vector.getHead().getY().coord),
+                new Coordinate(getHead().getZ().coord-vector.getHead().getZ().coord)));
+    };
+    public Vector scale(double doub){
+        return new Vector(new Point3D(new Coordinate(getHead().getX().coord*doub),
+                new Coordinate(getHead().getY().coord*doub),
+                new Coordinate(getHead().getZ().coord*doub)));
+    };
+    public Vector crossProduct(Vector vector){
+       return new Vector(new Point3D(
+               new Coordinate((getHead().getY().coord*vector.getHead().getZ().coord-
+                       getHead().getZ().coord*vector.getHead().getY().coord)),
+               new Coordinate((getHead().getZ().coord*vector.getHead().getX().coord-
+                       getHead().getX().coord*vector.getHead().getZ().coord)),
+               new Coordinate((getHead().getX().coord*vector.getHead().getY().coord-
+                       getHead().getY().coord*vector.getHead().getX().coord))));
+    };
+    public double dotProduct(Vector vector){
+        return getHead().getX().coord*vector.getHead().getX().coord+
+                getHead().getY().coord*vector.getHead().getY().coord+
+                getHead().getZ().coord*vector.getHead().getZ().coord;
+    };
+    public double lengthSquared(){
+        return getHead().getX().coord*getHead().getX().coord+getHead().getY().coord*getHead().getY().coord+
+                getHead().getZ().coord*getHead().getZ().coord;
+    };
+    public double length(){
+        return Math.sqrt(lengthSquared());
+    };
+    public Vector normalize(){
+
+    };
+    public Vector normalized(){
+
+    };
 }

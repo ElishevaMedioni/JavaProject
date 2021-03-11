@@ -40,4 +40,5 @@ public class Ray {
         Ray ray = (Ray) object;
         return java.util.Objects.equals(p0, ray.p0) && java.util.Objects.equals(dir, ray.dir);
     }
+
 }

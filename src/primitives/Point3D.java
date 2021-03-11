@@ -13,6 +13,18 @@ public class Point3D {
         this.z = z;
     }
 
+    public Coordinate getX() {
+        return this.x;
+    }
+
+    public Coordinate getY() {
+        return this.y;
+    }
+
+    public Coordinate getZ() {
+        return this.z;
+    }
+
     public void setX(Coordinate x) {
         this.x = x;
     }
