@@ -21,8 +21,13 @@ public class Ray {
     }
 
     public Ray(Point3D p0, Vector dir) {
-        this.p0 = p0;
-        this.dir = dir;
+        if (dir.length()==1){
+            this.p0 = p0;
+            this.dir = dir;
+        }
+        else
+            throw new IllegalArgumentException("The vector isn't normalized");
+
     }
 
     @java.lang.Override

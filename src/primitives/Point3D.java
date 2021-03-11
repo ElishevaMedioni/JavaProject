@@ -1,11 +1,11 @@
 package primitives;
 
 public class Point3D {
-    private Coordinate x;
-    private Coordinate y;
-    private Coordinate z;
+    protected Coordinate x;
+    protected Coordinate y;
+    protected Coordinate z;
 
-    //static const Point3D ZERO = new Point3D(new Coordinate(0),new Coordinate(0),new Coordinate(0));
+    static final Point3D ZERO = new Point3D(new Coordinate(0),new Coordinate(0),new Coordinate(0));
 
     public Point3D(Coordinate x, Coordinate y, Coordinate z) {
         this.x = x;
@@ -13,17 +13,7 @@ public class Point3D {
         this.z = z;
     }
 
-    public Coordinate getX() {
-        return this.x;
-    }
 
-    public Coordinate getY() {
-        return this.y;
-    }
-
-    public Coordinate getZ() {
-        return this.z;
-    }
 
     public void setX(Coordinate x) {
         this.x = x;
@@ -55,7 +45,7 @@ public class Point3D {
                 '}';
     }
 
-    public Vector substract(Point3D point3D)
+    public Vector subtract(Point3D point3D)
     {
         Coordinate coordinateX = new Coordinate(this.x.coord - point3D.x.coord);
         Coordinate coordinateY = new Coordinate(this.y.coord - point3D.y.coord);
@@ -87,7 +77,7 @@ public class Point3D {
         return Math.sqrt(distanceSquared(point3D));
     }
 
-    //verifier pr le const static ZERO
+
 
 
 
