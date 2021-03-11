@@ -76,7 +76,7 @@ public class Point3D {
     }
 
     //verifier pr le const static ZERO
-    //verifier pr les fonctions des distances laquel est au carre/racine
+
 
 
 
