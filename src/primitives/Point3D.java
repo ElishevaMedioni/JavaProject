@@ -5,12 +5,12 @@ public class Point3D {
     protected Coordinate y;
     protected Coordinate z;
 
-    static final Point3D ZERO = new Point3D(new Coordinate(0),new Coordinate(0),new Coordinate(0));
+    public static final Point3D ZERO = new Point3D(0,0,0);
 
-    public Point3D(Coordinate x, Coordinate y, Coordinate z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    public Point3D(double x, double y, double z) {
+        this.x = new Coordinate(x);
+        this.y = new Coordinate(y);
+        this.z = new Coordinate(z);
     }
 
 
@@ -47,22 +47,15 @@ public class Point3D {
 
     public Vector subtract(Point3D point3D)
     {
-        Coordinate coordinateX = new Coordinate(this.x.coord - point3D.x.coord);
-        Coordinate coordinateY = new Coordinate(this.y.coord - point3D.y.coord);
-        Coordinate coordinateZ = new Coordinate(this.z.coord - point3D.z.coord);
-        Point3D newPoint3D = new Point3D(coordinateX,coordinateY,coordinateZ);
 
-        return new Vector(newPoint3D);
+        return new Vector(this.x.coord - point3D.x.coord,this.y.coord - point3D.y.coord,this.z.coord - point3D.z.coord);
 
     }
 
     public Point3D add(Vector vec)
     {
-        Coordinate coordinateX = new Coordinate(this.x.coord + vec.getHead().x.coord);
-        Coordinate coordinateY = new Coordinate(this.y.coord + vec.getHead().y.coord);
-        Coordinate coordinateZ = new Coordinate(this.z.coord + vec.getHead().z.coord);
-        Point3D newPoint3D = new Point3D(coordinateX,coordinateY,coordinateZ);
-        return newPoint3D;
+        return new Point3D(this.x.coord + vec.getHead().x.coord,this.y.coord + vec.getHead().y.coord,this.z.coord + vec.getHead().z.coord);
+
     }
 
     public double distanceSquared(Point3D point3D)

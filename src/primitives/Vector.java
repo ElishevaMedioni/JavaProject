@@ -13,7 +13,19 @@ public class Vector
     }
 
     public Vector(double x, double y, double z) {
-        Point3D point3D = new Point3D(new Coordinate(x),new Coordinate(y),new Coordinate(z));
+        Point3D point3D = new Point3D(x,y,z);
+        if(point3D.equals(Point3D.ZERO))
+            throw new IllegalArgumentException("ERROR, The vector is ZERO vector");
+        this.head = point3D;
+    }
+
+    public Vector(Point3D point3D) {
+
+        this.head = point3D;
+    }
+
+    public Vector(Coordinate x, Coordinate y, Coordinate z) {
+        Point3D point3D = new Point3D(x.coord,y.coord,z.coord);
         if(point3D.equals(Point3D.ZERO))
             throw new IllegalArgumentException("ERROR, The vector is ZERO vector");
         this.head = point3D;
@@ -60,8 +72,8 @@ public class Vector
     };
     public Vector normalize(){
         double num=length();
-        head=new Point3D(new Coordinate(getHead().x.coord/num),new Coordinate(getHead().y.coord/num),
-                new Coordinate(getHead().z.coord/num));
+        head=new Point3D(getHead().x.coord/num,getHead().y.coord/num,
+                getHead().z.coord/num);
         return new Vector(head.x.coord,head.y.coord,head.z.coord);
     };
     public Vector normalized(){
