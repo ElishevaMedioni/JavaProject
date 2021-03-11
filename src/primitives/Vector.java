@@ -28,28 +28,23 @@ public class Vector
     }
 
     public Vector add(Vector vector){
-        return new Vector(new Point3D(new Coordinate(getHead().x.coord+vector.getHead().x.coord),
-                new Coordinate(getHead().y.coord+vector.getHead().y.coord),
-                new Coordinate(getHead().z.coord+vector.getHead().z.coord)));
+        return new Vector(getHead().x.coord+vector.getHead().x.coord,
+                getHead().y.coord+vector.getHead().y.coord,
+                getHead().z.coord+vector.getHead().z.coord);
     };
     public Vector subtract(Vector vector){
-        return new Vector(new Point3D(new Coordinate(getHead().x.coord-vector.getHead().x.coord),
-                new Coordinate(getHead().y.coord-vector.getHead().y.coord),
-                new Coordinate(getHead().z.coord-vector.getHead().z.coord)));
+        return new Vector(getHead().x.coord-vector.getHead().x.coord,
+                getHead().y.coord-vector.getHead().y.coord,
+                getHead().z.coord-vector.getHead().z.coord);
     };
     public Vector scale(double doub){
-        return new Vector(new Point3D(new Coordinate(getHead().x.coord*doub),
-                new Coordinate(getHead().y.coord*doub),
-                new Coordinate(getHead().z.coord*doub)));
+        return new Vector(getHead().x.coord*doub,getHead().y.coord*doub,getHead().z.coord*doub);
     };
     public Vector crossProduct(Vector vector){
-       return new Vector(new Point3D(
-               new Coordinate((getHead().y.coord*vector.getHead().z.coord-
-                       getHead().z.coord*vector.getHead().y.coord)),
-               new Coordinate((getHead().z.coord*vector.getHead().x.coord-
-                       getHead().x.coord*vector.getHead().z.coord)),
-               new Coordinate((getHead().x.coord*vector.getHead().y.coord-
-                       getHead().y.coord*vector.getHead().x.coord))));
+       return new Vector(
+               getHead().y.coord*vector.getHead().z.coord-getHead().z.coord*vector.getHead().y.coord,
+               getHead().z.coord*vector.getHead().x.coord- getHead().x.coord*vector.getHead().z.coord,
+               getHead().x.coord*vector.getHead().y.coord-getHead().y.coord*vector.getHead().x.coord);
     };
     public double dotProduct(Vector vector){
         return getHead().x.coord*vector.getHead().x.coord+
@@ -67,11 +62,10 @@ public class Vector
         double num=length();
         head=new Point3D(new Coordinate(getHead().x.coord/num),new Coordinate(getHead().y.coord/num),
                 new Coordinate(getHead().z.coord/num));
-        return new Vector(head);
+        return new Vector(head.x.coord,head.y.coord,head.z.coord);
     };
     public Vector normalized(){
         double num=length();
-        return new Vector(new Point3D(new Coordinate(getHead().x.coord/num),new Coordinate(getHead().y.coord/num),
-                new Coordinate(getHead().z.coord/num)));
+        return new Vector(getHead().x.coord/num,getHead().y.coord/num,getHead().z.coord/num);
     };
 }
