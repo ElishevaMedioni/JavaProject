@@ -5,7 +5,15 @@ import primitives.Vector;
 
 public class Sphere {
     private Point3D center;
-    double radius;
+    private double radius;
+
+    public Point3D getCenter() {
+        return center;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
 
     public Vector getNormal(Point3D point3D)
     {

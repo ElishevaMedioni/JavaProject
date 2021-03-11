@@ -5,6 +5,11 @@ import primitives.Vector;
 
 public class Plane {
     private Point3D q0;
+
+    public Point3D getQ0() {
+        return q0;
+    }
+
     private Vector normal;
 
     public Plane(Point3D p1,Point3D p2,Point3D p3)
