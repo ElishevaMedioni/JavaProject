@@ -59,9 +59,14 @@ public class Vector
         return Math.sqrt(lengthSquared());
     };
     public Vector normalize(){
-
+        double num=length();
+        head=new Point3D(new Coordinate(getHead().getX().coord/num),new Coordinate(getHead().getY().coord/num),
+                new Coordinate(getHead().getZ().coord/num));
+        return new Vector(head);
     };
     public Vector normalized(){
-
+        double num=length();
+        return new Vector(new Point3D(new Coordinate(getHead().getX().coord/num),new Coordinate(getHead().getY().coord/num),
+                new Coordinate(getHead().getZ().coord/num)));
     };
 }
