@@ -7,5 +7,8 @@ public class Sphere {
     private Point3D center;
     double radius;
 
+public Vector getNormal(Point3D point3D)
+{
 
+}
 }
