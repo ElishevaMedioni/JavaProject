@@ -22,7 +22,8 @@ public class Plane {
         q0 = point3D;
     }
 
-    public Vector getNormal(Point3D point3D) {
-
+    public Vector getNormal()
+    {
+        return null;
     }
 }

@@ -6,7 +6,8 @@ import geometries.Geometry;
 public class Cylinder extends Tube{
     private double height;
 
-    public Vector getNormal(Point3D point3D){
-
+    public Vector getNormal(Point3D point3D)
+    {
+        return null;
     }
 }

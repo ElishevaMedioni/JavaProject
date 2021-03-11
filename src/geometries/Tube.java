@@ -10,6 +10,6 @@ public class Tube {
 
     public Vector getNormal(Point3D point3D)
     {
-
+        return null;
     }
 }
