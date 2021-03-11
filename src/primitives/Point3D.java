@@ -33,7 +33,7 @@ public class Point3D {
         if (o == null || getClass() != o.getClass()) return false;
         Point3D point3D = (Point3D) o;
         return x.equals(point3D.x) && y.equals(point3D.y) && z.equals(point3D.z);
-        //est ce que je met this.x.equals ??
+
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Point3D {
     public Vector subtract(Point3D point3D)
     {
 
-        return new Vector(this.x.coord - point3D.x.coord,this.y.coord - point3D.y.coord,this.z.coord - point3D.z.coord);
+        return new Vector( this.x.coord - point3D.x.coord,this.y.coord - point3D.y.coord,this.z.coord - point3D.z.coord);
 
     }
 

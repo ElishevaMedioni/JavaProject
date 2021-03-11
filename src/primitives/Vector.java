@@ -34,9 +34,8 @@ public class Vector
     public boolean equals(Object object) {
         if (this == object) return true;
         if (!(object instanceof Vector)) return false;
-        if (!super.equals(object)) return false;
         Vector vector = (Vector) object;
-        return java.util.Objects.equals(head, vector.head);
+        return head.equals(vector.getHead());
     }
 
     public Vector add(Vector vector){
@@ -74,7 +73,7 @@ public class Vector
         double num=length();
         head=new Point3D(getHead().x.coord/num,getHead().y.coord/num,
                 getHead().z.coord/num);
-        return new Vector(head.x.coord,head.y.coord,head.z.coord);
+        return this;
     };
     public Vector normalized(){
         double num=length();

@@ -19,4 +19,12 @@ public class Sphere {
     {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Sphere{" +
+                "center=" + center +
+                ", radius=" + radius +
+                '}';
+    }
 }

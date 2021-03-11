@@ -21,4 +21,12 @@ public class Tube {
     {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "Tube{" +
+                "axisRay=" + axisRay +
+                ", radius=" + radius +
+                '}';
+    }
 }
