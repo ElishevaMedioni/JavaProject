@@ -1,5 +1,10 @@
 package primitives;
+//import org.junit.jupiter.api.Test;
+
+import org.junit.jupiter.api.Test;
+
 import java.lang.Math.*;
+
 public class Vector
 {
     private Point3D head;
