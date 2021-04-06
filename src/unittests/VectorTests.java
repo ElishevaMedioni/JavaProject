@@ -2,23 +2,36 @@ package unittests;
 
 import org.junit.jupiter.api.Test;
 import primitives.Vector;
+
+import static java.lang.System.out;
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 import static org.junit.Assert.*;
 
 class VectorTests extends Object {
 
+    Vector v = new Vector(1, 2, 3);
+    Vector v1 = new Vector(1, 2, 3);
+    Vector v2 = new Vector(-2, -4, -6);
+    Vector v3 = new Vector(0, 3, -2);
+
     @Test
     void add() {
-
+        Vector vAdd=v1.add(v2), vEx=new Vector(-1,-2,-3);
+        assertEquals("ERROR: add() wrong value", vAdd, vEx);
     }
 
     @Test
     void subtract() {
+        Vector vSub=v1.subtract(v2), vEx=new Vector(3,6,9);
+        assertEquals("ERROR: subtract() wrong value", vSub, vEx);
     }
 
     @Test
     void scale() {
+        Vector vScale=v1.scale(2), vEx=new Vector(2,4,6);
+        assertEquals("ERROR: scale() wrong value", vScale, vEx);
     }
 
     /**
@@ -55,21 +68,33 @@ class VectorTests extends Object {
 
     @Test
     void dotProduct() {
+        assertTrue("ERROR: dotProduct() for orthogonal vectors is not zero",isZero(v1.dotProduct(v3)));
+        assertTrue("ERROR: dotProduct() wrong value",isZero(v1.dotProduct(v2) + 28));
     }
 
     @Test
     void lengthSquared() {
+        assertTrue("ERROR: lengthSquared() wrong value",isZero(v1.lengthSquared() - 14));
     }
 
     @Test
     void length() {
+        assertTrue("ERROR: length() wrong value",isZero(new Vector(0, 3, 4).length() - 5));
+
     }
 
     @Test
     void normalize() {
+        Vector vCopy = new Vector(v.getHead());
+        Vector vCopyNormalize = vCopy.normalize();
+        assertEquals("ERROR: normalize() function creates a new vector", vCopy, vCopyNormalize);
+        assertTrue("ERROR: normalize() result is not a unit vector",isZero(vCopyNormalize.length() - 1));
     }
 
     @Test
     void normalized() {
+        Vector u = v.normalized();
+        assertNotEquals("ERROR: normalizated() function does not create a new vector",u,v);
+
     }
 }

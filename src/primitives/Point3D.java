@@ -58,6 +58,11 @@ public class Point3D {
 
     }
 
+    /**
+     *
+     * @param point3D
+     * @return the distance between two Point3D
+     */
     public double distanceSquared(Point3D point3D)
     {
         return (this.x.coord - point3D.x.coord)*(this.x.coord - point3D.x.coord)
@@ -70,7 +75,11 @@ public class Point3D {
         return Math.sqrt(distanceSquared(point3D));
     }
 
-
+    public boolean checkLinearDependent(Point3D point3D)
+    {
+        double num= x.coord/ point3D.x.coord;
+        return y.coord/ point3D.y.coord==num && z.coord/ point3D.z.coord==num;
+    }
 
 
 

@@ -3,6 +3,8 @@ package geometries;
 import primitives.Point3D;
 import primitives.Vector;
 
+import java.awt.*;
+
 public class Sphere {
     private Point3D center;
     private double radius;
@@ -15,9 +17,15 @@ public class Sphere {
         return radius;
     }
 
-    public Vector getNormal(Point3D point3D)
+    public Vector getNormal(Point3D point3D) {
+        Vector vector = point3D.subtract(center);
+        return vector.normalize();
+    }
+
+    public Sphere(Point3D point3D, double num)
     {
-        return null;
+        center=point3D;
+        radius=num;
     }
 
     @Override
