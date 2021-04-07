@@ -24,7 +24,11 @@ public class Tube {
 
     public Vector getNormal(Point3D point3D){
         double t=axisRay.getDir().dotProduct(point3D.subtract(axisRay.getP0()));
-        Point3D o=axisRay.getP0().add(axisRay.getDir().scale(t));
+        Point3D o;
+        if(t==0.0)
+            o=axisRay.getP0();
+        else
+            o=axisRay.getP0().add(axisRay.getDir().scale(t));
         Vector vector = point3D.subtract(o);
         return vector.normalize();
     }

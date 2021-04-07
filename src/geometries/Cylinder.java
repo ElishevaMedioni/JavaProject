@@ -11,9 +11,8 @@ public class Cylinder extends Tube{
         return height;
     }
 
-    public Vector getNormal(Point3D point3D)
-    {
-        return null;
+    public Vector getNormal(Point3D point3D){
+        return getAxisRay().getDir();
     }
 
     public Cylinder(Ray axisRay, double radius, double height) {

@@ -35,7 +35,7 @@ public class Plane {
 
     public Vector getNormal()
     {
-        return null;
+        return normal;
     }
 
     public Vector getNormal(Point3D point3D){

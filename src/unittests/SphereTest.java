@@ -13,8 +13,8 @@ class SphereTest extends Object {
 
     @Test
     void getNormal() {
-        Sphere sp= new Sphere(new Point3D(0,0,0),5);
-        assertEquals("Bad normal to sphere", new Vector(0, 3/5, 4/5), sp.getNormal(new Point3D(0, 3, 4)));
+        Sphere sp= new Sphere(Point3D.ZERO,5);
+        assertEquals("Bad normal to sphere", new Vector(0, 3/5.0, 4/5.0), sp.getNormal(new Point3D(0, 3, 4)));
 
     }
 }

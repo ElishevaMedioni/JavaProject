@@ -13,12 +13,14 @@ class TubeTest extends Object {
 
     @Test
     void getNormal() {
-        Tube tu=new Tube(new Ray(new Point3D(1,0,0),new Vector(1,0,0)),5);
+        Tube tu = new Tube(new Ray(new Point3D(1, 0, 0), new Vector(1, 0, 0)), 5);
         // ============ Equivalence Partitions Tests ==============
-        assertEquals("Bad normal to tube",new Vector(0,3,4), tu.getNormal(new Point3D(0,3,4)));
+        double x=3/5.0, y=4/5.0;
+        assertEquals("Bad normal to tube", new Vector(0, 3/5.0, 4/5.0), tu.getNormal(new Point3D(0, 3, 4)));
 
 
         // =============== Boundary Values Tests ==================
-        assertEquals("Bad normal to tube",new Vector(0,3,4), tu.getNormal(new Point3D(-3,0,0)));
+        //case test when the point is in front of the head of ray
+        assertEquals("Bad normal to tube", new Vector(0,-3/5.0,-4/5.0), tu.getNormal(new Point3D(1,-3,-4)));
     }
 }
