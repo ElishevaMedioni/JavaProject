@@ -11,6 +11,12 @@ public class Cylinder extends Tube{
         return height;
     }
 
+    /**
+     * getNormal for the finite Cylinder
+     * The normal at a base will be simply equal to central ray's direction vector 𝑣
+     * @param point3D
+     * @return Vector
+     */
     public Vector getNormal(Point3D point3D){
         return getAxisRay().getDir();
     }

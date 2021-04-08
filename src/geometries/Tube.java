@@ -6,6 +6,7 @@ import primitives.Vector;
 
 public class Tube {
     private Ray axisRay;
+    private double radius;
 
     public Ray getAxisRay() {
         return axisRay;
@@ -20,11 +21,18 @@ public class Tube {
         this.radius = radius;
     }
 
-    private double radius;
-
+    /**
+     * Tube (infinite cylinder normal)
+     * 𝑡 = 𝑣 ∙ (𝑃 − 𝑃o)
+     * 𝑂=𝑃 +𝑡∙𝑣
+     * n = normalize(P - O)
+     * @param point3D
+     * @return Vector
+     */
     public Vector getNormal(Point3D point3D){
-        double t=axisRay.getDir().dotProduct(point3D.subtract(axisRay.getP0()));
+        double t = axisRay.getDir().dotProduct(point3D.subtract(axisRay.getP0()));
         Point3D o;
+        //case when the point is in front of the head of ray
         if(t==0.0)
             o=axisRay.getP0();
         else

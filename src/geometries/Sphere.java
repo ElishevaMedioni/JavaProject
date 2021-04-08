@@ -17,6 +17,11 @@ public class Sphere {
         return radius;
     }
 
+    /**
+     * getNormal for the sphere: n = normalize(P - O)
+     * @param point3D
+     * @return Vector
+     */
     public Vector getNormal(Point3D point3D) {
         Vector vector = point3D.subtract(center);
         return vector.normalize();
