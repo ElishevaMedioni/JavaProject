@@ -12,9 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class CylinderTest extends Object {
 
     @Test
-    /**
-     *
-     */
     void getNormal() {
         Cylinder cylinder=new Cylinder(new Ray(new Point3D(1,0,0),new Vector(1,0,0)),5,6);
 
