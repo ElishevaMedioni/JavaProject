@@ -1,9 +1,11 @@
 package geometries;
 
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
 
 import java.awt.*;
+import java.util.List;
 
 public class Plane {
     private Point3D q0;
@@ -51,6 +53,10 @@ public class Plane {
 
     public Vector getNormal(Point3D point3D){
         return normal;
+    }
+
+    public List<Point3D> findIntersections(Ray ray){
+        return null;
     }
 
     @Override

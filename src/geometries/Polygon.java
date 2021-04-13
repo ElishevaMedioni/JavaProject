@@ -1,5 +1,6 @@
 package geometries;
 
+import java.awt.*;
 import java.util.List;
 import primitives.*;
 import static primitives.Util.*;
@@ -43,6 +44,11 @@ public class Polygon implements Geometry {
      *                                  <li>The polygon is concave (not convex)</li>
      *                                  </ul>
      */
+
+    public List<Point3D> findIntersections(Ray ray){
+        return null;
+    }
+
     public Polygon(Point3D... vertices) {
         if (vertices.length < 3)
             throw new IllegalArgumentException("A polygon can't have less than 3 vertices");

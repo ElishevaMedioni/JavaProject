@@ -11,6 +11,32 @@ public class Point3D {
     protected Coordinate y;
     protected Coordinate z;
 
+    /**
+     * getting the coord x
+     * @return value of the coord x
+     */
+
+    public double getX(){
+        return x.coord;
+    }
+
+
+    /**
+     * getting the coord y
+     * @return value of the coord y
+     */
+    public double getY() {
+        return y.coord;
+    }
+
+    /**
+     * getting the coord z
+     * @return value of the coord z
+     */
+    public double getZ() {
+        return z.coord;
+    }
+
     public static final Point3D ZERO = new Point3D(0,0,0);
 
     /**

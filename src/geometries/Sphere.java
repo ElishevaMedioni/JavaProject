@@ -1,9 +1,11 @@
 package geometries;
 
 import primitives.Point3D;
+import primitives.Ray;
 import primitives.Vector;
 
 import java.awt.*;
+import java.util.List;
 
 public class Sphere {
     private Point3D center;
@@ -25,6 +27,10 @@ public class Sphere {
     public Vector getNormal(Point3D point3D) {
         Vector vector = point3D.subtract(center);
         return vector.normalize();
+    }
+
+    public List<Point3D> findIntersections(Ray ray){
+        return null;
     }
 
     public Sphere(Point3D point3D, double num)
