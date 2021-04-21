@@ -30,7 +30,23 @@ public class Sphere {
     }
 
     public List<Point3D> findIntersections(Ray ray){
-        return null;
+        List<Point3D> list;
+        Vector u=getCenter().subtract(ray.getP0());
+        double tM=ray.getDir().dotProduct(u);
+        double d= Math.sqrt(u.lengthSquared()-tM*tM);
+        if(d>=radius)
+            return null;
+        double tH=Math.sqrt(radius*radius-d*d);
+        double t1=tM+tH,t2=tM-tH;
+        if(t1>0) {
+            Point3D p1=ray.getP0().add(ray.getDir().scale(t1));
+            list=List.of(p1);
+        }
+        if(t2>0) {
+            Point3D p2=ray.getP0().add(ray.getDir().scale(t1));
+            list=List.of(p2);
+        }
+        p2=ray.getP0().add(ray.getDir().scale(t1));
     }
 
     public Sphere(Point3D point3D, double num)
