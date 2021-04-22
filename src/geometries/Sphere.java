@@ -38,15 +38,18 @@ public class Sphere {
             return null;
         double tH=Math.sqrt(radius*radius-d*d);
         double t1=tM+tH,t2=tM-tH;
-        if(t1>0) {
-            Point3D p1=ray.getP0().add(ray.getDir().scale(t1));
+        Point3D p1=ray.getP0().add(ray.getDir().scale(t1));
+        Point3D p2=ray.getP0().add(ray.getDir().scale(t1));
+        if(t1>0 && t2<0) {
             list=List.of(p1);
+            return list;
         }
-        if(t2>0) {
-            Point3D p2=ray.getP0().add(ray.getDir().scale(t1));
+        if(t2>0 && t1<0) {
             list=List.of(p2);
+            return list;
         }
-        p2=ray.getP0().add(ray.getDir().scale(t1));
+        list=List.of(p1,p2);
+        return list;
     }
 
     public Sphere(Point3D point3D, double num)
