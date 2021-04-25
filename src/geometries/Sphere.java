@@ -6,6 +6,7 @@ import primitives.Vector;
 
 import java.awt.*;
 import java.util.List;
+import static primitives.Util.*;
 
 public class Sphere {
     private Point3D center;
@@ -31,25 +32,46 @@ public class Sphere {
 
     public List<Point3D> findIntersections(Ray ray){
         List<Point3D> list;
-        Vector u=getCenter().subtract(ray.getP0());
+        Vector u;
+
+        if(ray.getP0().equals(center)){
+            Vector v=ray.getDir().normalize();
+            Point3D point3D=center.add(v.scale(radius));
+            return List.of(point3D);
+        }
+
+        u=getCenter().subtract(ray.getP0());
         double tM=ray.getDir().dotProduct(u);
-        double d= Math.sqrt(u.lengthSquared()-tM*tM);
+        double d= alignZero(Math.sqrt(u.lengthSquared()-tM*tM));
         if(d>=radius)
             return null;
         double tH=Math.sqrt(radius*radius-d*d);
         double t1=tM+tH,t2=tM-tH;
-        Point3D p1=ray.getP0().add(ray.getDir().scale(t1));
-        Point3D p2=ray.getP0().add(ray.getDir().scale(t1));
-        if(t1>0 && t2<0) {
-            list=List.of(p1);
-            return list;
+        if(t1<=0&&t2<=0)
+            return null;
+        Point3D p1, p2;
+        if(t1>0&&t2<=0) {
+            p1 = ray.getP0().add(ray.getDir().scale(t1));
+            if(!p1.equals(ray.getP0()))
+                return List.of(p1);
+            return null;
         }
-        if(t2>0 && t1<0) {
-            list=List.of(p2);
-            return list;
+        if(t1<=0&&t2>0){
+            p2=ray.getP0().add(ray.getDir().scale(t2));
+            if(!p2.equals(ray.getP0()))
+                return List.of(p2);
+            return null;
         }
-        list=List.of(p1,p2);
-        return list;
+        if(t1>0&&t2>0) {
+            p2=ray.getP0().add(ray.getDir().scale(t2));
+            p1 = ray.getP0().add(ray.getDir().scale(t1));
+            if(p1.equals(ray.getP0()))
+                return List.of(p2);
+            if(p2.equals(ray.getP0()))
+                return List.of(p1);
+            return List.of(p1,p2);
+        }
+        return null;
     }
 
     public Sphere(Point3D point3D, double num)
