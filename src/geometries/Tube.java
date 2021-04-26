@@ -6,7 +6,7 @@ import primitives.Vector;
 
 import java.util.List;
 
-public class Tube {
+public class Tube implements Geometry{
     private Ray axisRay;
     private double radius;
 
@@ -38,7 +38,7 @@ public class Tube {
         if(t==0.0)
             o=axisRay.getP0();
         else
-            o=axisRay.getP0().add(axisRay.getDir().scale(t));
+            o=axisRay.getPoint(t);
         Vector vector = point3D.subtract(o);
         return vector.normalize();
     }

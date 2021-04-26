@@ -8,7 +8,7 @@ import static primitives.Util.*;
 import java.awt.*;
 import java.util.List;
 
-public class Plane {
+public class Plane implements Geometry{
     private Point3D q0;
 
     public Point3D getQ0() {
@@ -63,7 +63,7 @@ public class Plane {
         double t=(normal.dotProduct(q0.subtract(ray.getP0())))/(normal.dotProduct(ray.getDir()));
         if(t<=0)
             return null;
-        Point3D p=ray.getP0().add(ray.getDir().scale(t));
+        Point3D p=ray.getPoint(t);
         List<Point3D> list=List.of(p);
         return list;
     }

@@ -23,7 +23,7 @@ public class Triangle extends Polygon {
         double t = (plane.getNormal().dotProduct(plane.getQ0().subtract(ray.getP0()))) / (plane.getNormal().dotProduct(ray.getDir()));
         if (t <= 0)
             return null;
-        Point3D p = ray.getP0().add(ray.getDir().scale(t));
+        Point3D p =ray.getPoint(t);
         Vector v1 = vertices.get(0).subtract(ray.getP0()), v2 = vertices.get(1).subtract(ray.getP0()),
                 v3 = vertices.get(2).subtract(ray.getP0());
         Vector N1 = (v1.crossProduct(v2)).normalize(), N2 = (v2.crossProduct(v3)).normalize(),

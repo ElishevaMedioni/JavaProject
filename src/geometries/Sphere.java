@@ -3,12 +3,18 @@ package geometries;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
+import primitives.*;
 
 import java.awt.*;
 import java.util.List;
 import static primitives.Util.*;
 
-public class Sphere {
+
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
+
+public class Sphere implements Geometry {
     private Point3D center;
     private double radius;
 
@@ -51,20 +57,20 @@ public class Sphere {
             return null;
         Point3D p1, p2;
         if(t1>0&&t2<=0) {
-            p1 = ray.getP0().add(ray.getDir().scale(t1));
+            p1=ray.getPoint(t1);
             if(!p1.equals(ray.getP0()))
                 return List.of(p1);
             return null;
         }
         if(t1<=0&&t2>0){
-            p2=ray.getP0().add(ray.getDir().scale(t2));
+            p2=ray.getPoint(t2);
             if(!p2.equals(ray.getP0()))
                 return List.of(p2);
             return null;
         }
         if(t1>0&&t2>0) {
-            p2=ray.getP0().add(ray.getDir().scale(t2));
-            p1 = ray.getP0().add(ray.getDir().scale(t1));
+            p2=ray.getPoint(t2);
+            p1=ray.getPoint(t1);
             if(p1.equals(ray.getP0()))
                 return List.of(p2);
             if(p2.equals(ray.getP0()))

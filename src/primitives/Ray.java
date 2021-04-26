@@ -59,6 +59,14 @@ public class Ray {
 
     }
 
+    /**
+     * calculate the point with the ray
+     * @param t value of the scale
+     * @return the value of the point3D
+     */
+    public Point3D getPoint(double t){
+        return getP0().add(getDir().scale(t));
+    }
 
     /*************** Admin *****************/
 
