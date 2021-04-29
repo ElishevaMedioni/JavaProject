@@ -26,6 +26,12 @@ public class Sphere implements Geometry {
         return radius;
     }
 
+    public Sphere(Point3D point3D, double _radius)
+    {
+        center=point3D;
+        radius=_radius;
+    }
+
     /**
      * getNormal for the sphere: n = normalize(P - O)
      * @param point3D
@@ -80,11 +86,7 @@ public class Sphere implements Geometry {
         return null;
     }
 
-    public Sphere(Point3D point3D, double num)
-    {
-        center=point3D;
-        radius=num;
-    }
+
 
     @Override
     public String toString() {
