@@ -11,5 +11,5 @@ public interface Intersectable {
      * @param ray value of the ray
      * @return list of the intersections
      */
-    public List<Point3D> findIntersections(Ray ray);
+     List<Point3D> findIntersections(Ray ray);
 }

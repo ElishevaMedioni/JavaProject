@@ -15,9 +15,18 @@ import static primitives.Util.isZero;
 
 
 public class Sphere implements Geometry {
+    //FIELDS
     private Point3D center;
     private double radius;
 
+    //CONSTRUCTOR
+    public Sphere(Point3D point3D, double _radius)
+    {
+        center=point3D;
+        radius=_radius;
+    }
+
+    //GETTER
     public Point3D getCenter() {
         return center;
     }
@@ -26,11 +35,6 @@ public class Sphere implements Geometry {
         return radius;
     }
 
-    public Sphere(Point3D point3D, double _radius)
-    {
-        center=point3D;
-        radius=_radius;
-    }
 
     /**
      * getNormal for the sphere: n = normalize(P - O)
@@ -42,6 +46,7 @@ public class Sphere implements Geometry {
         return vector.normalize();
     }
 
+    //METHODS
     public List<Point3D> findIntersections(Ray ray){
         List<Point3D> list;
         Vector u;
@@ -85,7 +90,6 @@ public class Sphere implements Geometry {
         }
         return null;
     }
-
 
 
     @Override

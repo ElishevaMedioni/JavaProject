@@ -12,6 +12,7 @@ public class Geometries implements Intersectable {
 
     /**
      * we choose to implement LinkedList because LinkedList is better for manipulating data
+     * better for the complexity (when you add an element to the list)
      */
     public Geometries() {
         geometries = new LinkedList<>();

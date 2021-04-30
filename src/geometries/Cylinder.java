@@ -5,11 +5,21 @@ import primitives.Vector;
 import geometries.Geometry;
 
 public class Cylinder extends Tube{
+
+    //field
     private double height;
 
+    //constructor
+    public Cylinder(Ray axisRay, double radius, double height) {
+        super(axisRay, radius);
+        this.height = height;
+    }
+
+    //methods
     public double getHeight() {
         return height;
     }
+
 
     /**
      * getNormal for the finite Cylinder
@@ -19,11 +29,6 @@ public class Cylinder extends Tube{
      */
     public Vector getNormal(Point3D point3D){
         return getAxisRay().getDir();
-    }
-
-    public Cylinder(Ray axisRay, double radius, double height) {
-        super(axisRay, radius);
-        this.height = height;
     }
 
 

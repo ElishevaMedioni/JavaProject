@@ -37,7 +37,7 @@ public class IntegrationTests {
     public void testRayIntersection(){
 
         //TC01: camera in front of the sphere with the radius of 1 (2 point)
-        Camera camera=new Camera(Point3D.ZERO, new Vector(0,1,0), new Vector(0,0,-1))
+        Camera camera=new Camera(Point3D.ZERO, new Vector(0,0,-1), new Vector(0,1,0))
                 .setDistance(1).setViewPlaneSize(3,3);
         Sphere sp=new Sphere(new Point3D(0,0,-3),1);
 
@@ -45,7 +45,7 @@ public class IntegrationTests {
                 calculateIntersections(camera, sp).size());
 
         //TC02: camera in front of the sphere with the radius of 2.5 (18 point)
-        Camera camera2=new Camera(new Point3D(0,0,0.5), new Vector(0,1,0), new Vector(0,0,-1))
+        Camera camera2=new Camera(new Point3D(0,0,0.5), new Vector(0,0,-1), new Vector(0,1,0))
                 .setDistance(1).setViewPlaneSize(3,3);
         Sphere sp2=new Sphere(new Point3D(0,0,-2.5),2.5);
 
@@ -75,7 +75,7 @@ public class IntegrationTests {
                 "the sphere is behind of the camera");
 
 
-        Camera camera5=new Camera(Point3D.ZERO, new Vector(0,1,0), new Vector(0,0,-1))
+        Camera camera5=new Camera(Point3D.ZERO, new Vector(0,0,-1), new Vector(0,1,0))
                 .setDistance(1).setViewPlaneSize(3,3);
 
         //TC06: camera in front of the plane (9 points)

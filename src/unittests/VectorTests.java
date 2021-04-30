@@ -74,23 +74,23 @@ class VectorTests extends Object {
     @Test
     void testDotProduct() {
         // ============ Equivalence Partitions Tests ==============
-        //TD01: Test that the dot product of orthogonal vectors is zero
+        //TC01: Test that the dot product of orthogonal vectors is zero
         assertTrue("ERROR: dotProduct() for orthogonal vectors is not zero",isZero(v1.dotProduct(v3)));
-        //TD02: Test that the dot product works properly
+        //TC02: Test that the dot product works properly
         assertTrue("ERROR: dotProduct() wrong value",isZero(v1.dotProduct(v2) + 28));
     }
 
     @Test
     void testLengthSquared() {
         // ============ Equivalence Partitions Tests ==============
-        //TLS01: Test that the lengthSquared works properly
+        //TC01: Test that the lengthSquared works properly
         assertTrue("ERROR: lengthSquared() wrong value",isZero(v1.lengthSquared() - 14));
     }
 
     @Test
     void testLength() {
         // ============ Equivalence Partitions Tests ==============
-        //TL01: Test that the length works properly
+        //TC01: Test that the length works properly
         assertTrue("ERROR: length() wrong value",isZero(new Vector(0, 3, 4).length() - 5));
 
     }
@@ -98,7 +98,7 @@ class VectorTests extends Object {
     @Test
     void testNormalize() {
         // ============ Equivalence Partitions Tests ==============
-        //TN01: Test that the normalize function works properly
+        //TC01: Test that the normalize function works properly
         // test that it doesn't create a new vector
         // test that the vector is a unit vector
         Vector vCopy = new Vector(v.getHead());
@@ -110,7 +110,7 @@ class VectorTests extends Object {
     @Test
     void testNormalized() {
         // ============ Equivalence Partitions Tests ==============
-        //TN01: Test that the normalized function works properly
+        //TC01: Test that the normalized function works properly
         // test that the function create a new vector
         Vector u = v.normalized();
         assertNotEquals("ERROR: normalized() function does not create a new vector",u,v);

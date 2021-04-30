@@ -36,8 +36,7 @@ class PlaneTest extends Object {
         assertEquals("Wrong intersection", List.of(new Point3D(0,0,1)), result1);
 
         // TC02: Ray does not intersect the plane (0 points)
-        //assertNull(plane.findIntersections(new Ray(new Point3D(0,2,0), new Vector(0,-2,4))),
-          //      "Ray does not intersect the plane");
+
         assertNull(plane.findIntersections(new Ray(new Point3D(0,2,0), new Vector(0,4,0))),
                 "Ray does not intersect the plane");
 

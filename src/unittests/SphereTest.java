@@ -18,7 +18,7 @@ class SphereTest extends Object {
     @Test
     void tesGetNormal() {
         // ============ Equivalence Partitions Tests ==============
-        //TGN01: Test that the normal of the sphere is calculated properly
+        //TC01: Test that the normal of the sphere is calculated properly
         Sphere sp= new Sphere(Point3D.ZERO,5);
         assertEquals("Bad normal to sphere", new Vector(0, 3/5.0, 4/5.0), sp.getNormal(new Point3D(0, 3, 4)));
 

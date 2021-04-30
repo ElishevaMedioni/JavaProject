@@ -49,13 +49,12 @@ public class Ray {
      * @param p0 the point3D value
      * @param dir the vector value
      */
-    public Ray(Point3D p0, Vector dir) {
-        if (dir.length()==1)
-            this.dir = dir;
-        else
-            this.dir = dir.normalized();
+    public Ray(Point3D _p0, Vector _dir) {
+        if (_dir.length()!=1)
+            _dir = _dir.normalized();
 
-        this.p0 = p0;
+        p0 = _p0;
+        dir = _dir;
 
     }
 
@@ -74,7 +73,7 @@ public class Ray {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (!(object instanceof Ray)) return false;
-        if (!super.equals(object)) return false;
+        //if (!super.equals(object)) return false;
         Ray ray = (Ray) object;
         return java.util.Objects.equals(p0, ray.p0) && java.util.Objects.equals(dir, ray.dir);
     }

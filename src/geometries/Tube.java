@@ -7,9 +7,17 @@ import primitives.Vector;
 import java.util.List;
 
 public class Tube implements Geometry{
+    //FIELDS
     private Ray axisRay;
     private double radius;
 
+    //CONSTRUCTOR
+    public Tube(Ray axisRay, double radius) {
+        this.axisRay = axisRay;
+        this.radius = radius;
+    }
+
+    //GETTER
     public Ray getAxisRay() {
         return axisRay;
     }
@@ -18,10 +26,7 @@ public class Tube implements Geometry{
         return radius;
     }
 
-    public Tube(Ray axisRay, double radius) {
-        this.axisRay = axisRay;
-        this.radius = radius;
-    }
+   //METHODS
 
     /**
      * Tube (infinite cylinder normal)
@@ -51,6 +56,7 @@ public class Tube implements Geometry{
                 '}';
     }
 
+    //we try to do the findIntersections method for the bonus but it's not working
     public List<Point3D> findIntersections(Ray ray) {
         double disc = 4*(axisRay.getP0().getX()*axisRay.getDir().getHead().getX()+
                 axisRay.getP0().getY()*axisRay.getDir().getHead().getY())
@@ -83,8 +89,6 @@ public class Tube implements Geometry{
         Point3D p2 = new Point3D(x2,y2,z2);
 
         return List.of(p1,p2);
-
-
 
     }
 }

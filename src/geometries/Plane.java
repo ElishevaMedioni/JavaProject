@@ -9,13 +9,10 @@ import java.awt.*;
 import java.util.List;
 
 public class Plane implements Geometry{
+    //fields
     private Point3D q0;
-
-    public Point3D getQ0() {
-        return q0;
-    }
-
     private Vector normal;
+
 
     /**
      * Plane constructor, also calculate the normal of the plane
@@ -47,6 +44,11 @@ public class Plane implements Geometry{
         q0 = point3D;
     }
 
+    //GETTER
+    public Point3D getQ0() {
+        return q0;
+    }
+
     public Vector getNormal()
     {
         return normal;
@@ -56,6 +58,7 @@ public class Plane implements Geometry{
         return normal;
     }
 
+    //METHODS
     public List<Point3D> findIntersections(Ray ray){
         if(q0.equals(ray.getP0())||isZero(normal.dotProduct(ray.getDir()))||
              isZero(normal.dotProduct(q0.subtract(ray.getP0()))))
