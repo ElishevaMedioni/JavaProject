@@ -2,6 +2,9 @@ package elements;
 
 import primitives.Color;
 
+/**
+ *
+ */
 public class AmbientLight {
     private Color intensity;
 
