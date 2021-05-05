@@ -5,6 +5,9 @@ import primitives.Ray;
 
 import java.util.List;
 
+/**
+ * we create the interface Intersectable because all of the geometry use the method findIntersections
+ */
 public interface Intersectable {
     /**
      * fnd intersections of the ray with the geometry

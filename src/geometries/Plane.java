@@ -8,6 +8,9 @@ import static primitives.Util.*;
 import java.awt.*;
 import java.util.List;
 
+/**
+ * a plane is a flat, two-dimensional surface that extends infinitely far.
+ */
 public class Plane implements Geometry{
     //fields
     private Point3D q0;
@@ -16,9 +19,9 @@ public class Plane implements Geometry{
 
     /**
      * Plane constructor, also calculate the normal of the plane
-     * @param p1
-     * @param p2
-     * @param p3
+     * @param p1 value of p1
+     * @param p2 value of p2
+     * @param p3 value of p3
      */
     public Plane(Point3D p1,Point3D p2,Point3D p3)
     {
@@ -59,11 +62,21 @@ public class Plane implements Geometry{
     }
 
     //METHODS
+
+    /**
+     * calculate the intersection of the ray with the plane
+     * @param ray value of the ray
+     * @return list of the intersection
+     */
     public List<Point3D> findIntersections(Ray ray){
-        if(q0.equals(ray.getP0())||isZero(normal.dotProduct(ray.getDir()))||
-             isZero(normal.dotProduct(q0.subtract(ray.getP0()))))
+        double x1=normal.dotProduct(ray.getDir()),
+                x2=normal.dotProduct(q0.subtract(ray.getP0()));
+        // 1- checking if the p0 (Point3D) of the ray is equal to q0 (Point3D) of the plane
+        // 2- checking if the  ray is orthogonal to the plane
+        // 3- checking if the ray is parallel to the plane
+        if(q0.equals(ray.getP0())||isZero(x1)|| isZero(x2))
             return null;
-        double t=(normal.dotProduct(q0.subtract(ray.getP0())))/(normal.dotProduct(ray.getDir()));
+        double t=x2/x1;
         if(t<=0)
             return null;
         Point3D p=ray.getPoint(t);

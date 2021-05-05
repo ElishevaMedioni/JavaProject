@@ -8,6 +8,10 @@ import primitives.Util.*;
 
 import static primitives.Util.isZero;
 
+/**
+ * The camera Shoot rays from the center of projection
+ * through the view plane pixels
+ */
 public class Camera {
     //fields
     private Point3D p0;
@@ -47,12 +51,23 @@ public class Camera {
 
     //getter & setter
 
+    /**
+     * set the width and the height of the viewplane
+     * @param _width value of the width
+     * @param _height value of the height
+     * @return the Camera with width and height set
+     */
     public Camera setViewPlaneSize(double _width, double _height){
         width=_width;
         height=_height;
         return this;
     }
 
+    /**
+     * set the distance of the camera
+     * @param _distance value of the distance of the camera to the viewplane
+     * @return the camera with the distance set
+     */
     public Camera setDistance(double _distance){
         distance=_distance;
         return this;
@@ -79,6 +94,7 @@ public class Camera {
 
     /**
      * This function will return the ray through pixel from the camera to the view plane
+     *
      * @param nX Number of columns
      * @param nY Number of rows
      * @param j column
@@ -87,23 +103,24 @@ public class Camera {
      */
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i){
 
-        //Image center
+        //calculate the center of the image
         Point3D pC=p0.add(vTo.scale(distance));
 
-        //Ratio (pixel width & height)
+        //calculate the height and the width of each pixel
         double rY=height/nY;
         double rX=width/nX;
 
-        //Pixel[i,j] center
+        //calculate how many meter we have to move up/down and left/right from the center
         double yI=-(i-(nY-1)/2d)*rY;
         double xJ=(j-(nX-1)/2d)*rX;
 
-        Point3D pIJ=pC;
+        //to avoid constructing a vector zero
+        Point3D pIJ=pC; //Point3D of the ray
         if(!isZero(xJ))
             pIJ=pIJ.add(vRight.scale(xJ));
         if(!isZero(yI))
             pIJ=pIJ.add(vUp.scale(yI));
-        Vector vIJ=pIJ.subtract(p0);
+        Vector vIJ=pIJ.subtract(p0); // vector of the ray
         return new Ray(p0, vIJ);
 
 
