@@ -6,6 +6,11 @@ import primitives.Vector;
 
 import java.util.List;
 
+import static primitives.Util.isZero;
+
+/**
+ * The tube is a three-dimensional solid infinite
+ */
 public class Tube implements Geometry{
     //FIELDS
     private Ray axisRay;
@@ -40,7 +45,7 @@ public class Tube implements Geometry{
         double t = axisRay.getDir().dotProduct(point3D.subtract(axisRay.getP0()));
         Point3D o;
         //case when the point is in front of the head of ray
-        if(t==0.0)
+        if(isZero(t))
             o=axisRay.getP0();
         else
             o=axisRay.getPoint(t);
@@ -56,39 +61,8 @@ public class Tube implements Geometry{
                 '}';
     }
 
-    //we try to do the findIntersections method for the bonus but it's not working
+    @Override
     public List<Point3D> findIntersections(Ray ray) {
-        double disc = 4*(axisRay.getP0().getX()*axisRay.getDir().getHead().getX()+
-                axisRay.getP0().getY()*axisRay.getDir().getHead().getY())
-                *(axisRay.getP0().getX()*axisRay.getDir().getHead().getX()+
-                axisRay.getP0().getY()*axisRay.getDir().getHead().getY())
-                -4*(axisRay.getDir().getHead().getX()*axisRay.getDir().getHead().getX()
-        + axisRay.getDir().getHead().getY()*axisRay.getDir().getHead().getY())
-                *(axisRay.getP0().getX()*axisRay.getP0().getX()+
-                axisRay.getP0().getY()*axisRay.getP0().getY()-getRadius());
-        if (disc < 0)
-            return null;
-        double denominator = 2*(axisRay.getDir().getHead().getX()*axisRay.getDir().getHead().getX()
-                + axisRay.getDir().getHead().getY()*axisRay.getDir().getHead().getY());
-        if (denominator < 0 )
-            return null;
-        double t1 = (-2*(axisRay.getP0().getX()*axisRay.getDir().getHead().getX()
-        + axisRay.getP0().getY()* axisRay.getDir().getHead().getY())+ Math.sqrt(disc))/denominator;
-
-        double t2 = (-2*(axisRay.getP0().getX()*axisRay.getDir().getHead().getX()
-                + axisRay.getP0().getY()* axisRay.getDir().getHead().getY())- Math.sqrt(disc))/denominator;
-
-        double x1 = axisRay.getP0().getX()+ t1* axisRay.getDir().getHead().getX();
-        double y1 = axisRay.getP0().getY()+ t1* axisRay.getDir().getHead().getY();
-        double z1 = axisRay.getP0().getZ()+ t1* axisRay.getDir().getHead().getZ();
-        Point3D p1 = new Point3D(x1,y1,z1);
-
-        double x2 = axisRay.getP0().getX()+ t2* axisRay.getDir().getHead().getX();
-        double y2 = axisRay.getP0().getY()+ t2* axisRay.getDir().getHead().getY();
-        double z2 = axisRay.getP0().getZ()+ t2* axisRay.getDir().getHead().getZ();
-        Point3D p2 = new Point3D(x2,y2,z2);
-
-        return List.of(p1,p2);
-
+        return null;
     }
 }

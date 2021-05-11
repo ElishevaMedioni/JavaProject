@@ -34,6 +34,10 @@ public class Render {
         return this;
     }
 
+    /**
+     * color every pixel of the image
+     * check if none of the field aren't null
+     */
     public void renderImage(){
         if(imageWriter==null)
             throw new MissingResourceException("Missing field","UnsupportedOperationException",
@@ -57,12 +61,18 @@ public class Render {
             }
     }
 
+
     public void checkMissingImageWriter(){
         if(imageWriter==null)
             throw new MissingResourceException("Missing field","UnsupportedOperationException",
                 "imageWriter");
     }
 
+    /**
+     * print the grid according to the interval it gets
+     * @param interval value of the interval
+     * @param color
+     */
     public void printGrid(int interval, Color color){
         checkMissingImageWriter();
         for(int i=0;i<imageWriter.getNx();i++)
@@ -73,6 +83,9 @@ public class Render {
         imageWriter.writeToImage();
     }
 
+    /**
+     * checking that the image exist and then print the image on a file
+     */
     public void writeToImage(){
         checkMissingImageWriter();
         imageWriter.writeToImage();

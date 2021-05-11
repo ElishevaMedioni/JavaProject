@@ -69,6 +69,11 @@ public class Ray {
         return getP0().add(getDir().scale(t));
     }
 
+    /**
+     * go through all the list of the intersection, calculate the distance between the ray and the intersection (point3D)
+     * @param list list of all the intersections with the ray
+     * @return intersection with the smallest distance with the ray
+     */
     public Point3D findClosestPoint(List<Point3D> list){
         if(list==null)
             return null;

@@ -4,6 +4,9 @@ import primitives.Ray;
 import primitives.Vector;
 import geometries.Geometry;
 
+/**
+ * finite tube
+ */
 public class Cylinder extends Tube{
 
     //field

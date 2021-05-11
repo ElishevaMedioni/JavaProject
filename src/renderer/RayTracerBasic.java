@@ -13,6 +13,11 @@ public class RayTracerBasic extends RayTracerBase{
         super(scene);
     }
 
+    /**
+     * calculate the color of the pixel of the image
+     * @param ray value of the ray that goes through a pixel
+     * @return color of the closest intersection with the ray
+     */
     public Color traceRay(Ray ray){
         List<Point3D> intersections=scene.geometries.findIntersections(ray);
         if(intersections==null)
@@ -20,6 +25,7 @@ public class RayTracerBasic extends RayTracerBase{
         Point3D closestPoint= ray.findClosestPoint(intersections);
         return calcColor(closestPoint);
     }
+
 
     public Color calcColor(Point3D point3D){
         return scene.ambientLight.getIntensity();

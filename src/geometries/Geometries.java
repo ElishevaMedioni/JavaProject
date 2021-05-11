@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * list of several geometries
+ * we use composite design patterns in order to treat the same way each geometry via intersectable
  */
 public class Geometries implements Intersectable {
     private List<Intersectable> geometries;
