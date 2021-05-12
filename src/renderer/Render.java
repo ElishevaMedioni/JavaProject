@@ -10,7 +10,6 @@ import java.util.MissingResourceException;
 
 public class Render {
     private ImageWriter imageWriter;
-    private Scene scene;
     private Camera camera;
     private RayTracerBase rayTracerBase;
 
@@ -19,10 +18,6 @@ public class Render {
         return this;
     }
 
-    public Render setScene(Scene _scene){
-        scene=_scene;
-        return this;
-    }
 
     public Render setCamera(Camera _camera){
         camera=_camera;
@@ -42,9 +37,6 @@ public class Render {
         if(imageWriter==null)
             throw new MissingResourceException("Missing field","UnsupportedOperationException",
                     "imageWriter");
-        if(scene==null)
-            throw new MissingResourceException("Missing field","UnsupportedOperationException",
-                    "scene");
         if(camera==null||rayTracerBase==null)
             throw new MissingResourceException("Missing field","UnsupportedOperationException",
                     "camera");
