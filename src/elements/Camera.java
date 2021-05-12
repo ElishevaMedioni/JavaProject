@@ -31,21 +31,24 @@ public class Camera {
      */
     public Camera(Point3D _p0,Vector _vTo, Vector _vUp){
         p0=_p0;
-        vUp=_vUp.normalize();
-        vTo=_vTo.normalize();
-
-        vRight=vTo.crossProduct(vUp);
-        /*if(_vUp.length()==1 && _vTo.length()==1){
-            vUp=_vUp.normalize();
-            vTo=_vTo.normalize();
-
-            vRight=vUp.crossProduct(vTo);
-
-            if(vRight.length()!=1)
-                throw new IllegalArgumentException("The vector vRight isn't normalize");
+        if(!isZero(_vTo.dotProduct(_vUp))){
+            throw new IllegalArgumentException("The vectors vTo and vUp aren't orthogonal");
         }
-        else
-            throw new IllegalArgumentException("The vectors aren't normalize");*/
+        if(_vUp.length()!=1){
+            vUp=_vUp.normalize();
+            if(_vTo.length()!=1)
+                vTo=_vTo.normalize();
+        }
+        else if(_vTo.length()!=1)
+            vTo=_vTo.normalize();
+        else {
+            vUp=_vUp;
+            vTo=_vTo;
+        }
+        vRight=vTo.crossProduct(vUp);
+        if(vRight.length()!=1)
+            vRight=vRight.normalize();
+
     }
 
 
