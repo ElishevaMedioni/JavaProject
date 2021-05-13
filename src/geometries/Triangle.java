@@ -25,7 +25,7 @@ public class Triangle extends Polygon {
     }
 
     //METHODS
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         /**
          * Condition 1 - check if the q0 (point3D of the plane) isn't equal to the p0 (Point3D of the ray)
          * Condition 2 - checking it the denominator of t isn't equal to zero
@@ -48,10 +48,9 @@ public class Triangle extends Polygon {
         //Checking if the ray is parallel to the triangle -> No intersection
         if (isZero(alignZero(d1)) || isZero(alignZero(d2)) || isZero(alignZero(d3)))
             return null;
-        List<Point3D> list = List.of(p);
         //Checking if three of the dot product have the same sign to check if the intersection is inside the triangle
         if(checkSign(d1,d2)&&checkSign(d1,d3))
-            return list;
+            return List.of(new GeoPoint(this,p));
         return null;
     }
 

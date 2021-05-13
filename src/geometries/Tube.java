@@ -11,7 +11,7 @@ import static primitives.Util.isZero;
 /**
  * The tube is a three-dimensional solid infinite
  */
-public class Tube implements Geometry{
+public class Tube extends Geometry{
     //FIELDS
     private Ray axisRay;
     private double radius;
@@ -53,16 +53,13 @@ public class Tube implements Geometry{
         return vector.normalize();
     }
 
+    public List<GeoPoint> findGeoIntersections(Ray ray){return null;}
+
     @Override
     public String toString() {
         return "Tube{" +
                 "axisRay=" + axisRay +
                 ", radius=" + radius +
                 '}';
-    }
-
-    @Override
-    public List<Point3D> findIntersections(Ray ray) {
-        return null;
     }
 }

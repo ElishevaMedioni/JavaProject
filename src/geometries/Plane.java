@@ -5,13 +5,12 @@ import primitives.Ray;
 import primitives.Vector;
 import static primitives.Util.*;
 
-import java.awt.*;
 import java.util.List;
 
 /**
  * a plane is a flat, two-dimensional surface that extends infinitely far.
  */
-public class Plane implements Geometry{
+public class Plane extends Geometry{
     //fields
     private Point3D q0;
     private Vector normal;
@@ -35,8 +34,8 @@ public class Plane implements Geometry{
         //calculate the normal of the plane:
         q0 = p1;
         //calculate two vectors that are on the plane
-        Vector vec1 = (new Vector(p1)).subtract(new Vector(p2));
-        Vector vec2 = (new Vector(p1)).subtract(new Vector(p3));
+        Vector vec1 = (new Vector(p1)).substract(new Vector(p2));
+        Vector vec2 = (new Vector(p1)).substract(new Vector(p3));
         Vector vecN = vec1.crossProduct(vec2);
         normal = vecN.normalize();
     }
@@ -62,13 +61,8 @@ public class Plane implements Geometry{
     }
 
     //METHODS
-
-    /**
-     * calculate the intersection of the ray with the plane
-     * @param ray value of the ray
-     * @return list of the intersection
-     */
-    public List<Point3D> findIntersections(Ray ray){
+    public List<GeoPoint> findGeoIntersections(Ray ray){
+        List<GeoPoint> intersections;
         double x1=normal.dotProduct(ray.getDir()),
                 x2=normal.dotProduct(q0.subtract(ray.getP0()));
         // 1- checking if the p0 (Point3D) of the ray is equal to q0 (Point3D) of the plane
@@ -80,8 +74,8 @@ public class Plane implements Geometry{
         if(t<=0)
             return null;
         Point3D p=ray.getPoint(t);
-        List<Point3D> list=List.of(p);
-        return list;
+        intersections=List.of(new GeoPoint(this,p));
+        return intersections;
     }
 
     @Override

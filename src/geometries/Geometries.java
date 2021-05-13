@@ -45,19 +45,18 @@ public class Geometries implements Intersectable {
      * @param ray value of the ray
      * @return list of all the intersections
      */
-    @Override
-    public List<Point3D> findIntersections(Ray ray) {
 
-        List<Point3D> intersections= new LinkedList<>(); //create a lists of the intersections (big list)
-        List<Point3D> inter; //little list, a helper list
+    public List<GeoPoint> findGeoIntersections(Ray ray){
+        List<GeoPoint> intersections= new LinkedList<>(); //create a lists of the intersections (big list)
+        List<GeoPoint> inter; //little list, a helper list
 
         //if the list of the geometries is empty return null
         if(geometries.size()==0)
             return null;
 
-        //the for loop go throught all the geometries of the list and check the intersections with the ray
+        //the for loop go through all the geometries of the list and check the intersections with the ray
         for(int i = 0; i< geometries.size(); i++){
-            inter= geometries.get(i).findIntersections(ray);
+            inter= geometries.get(i).findGeoIntersections(ray);
             if(inter!=null){ //if inter is null we can't add it to the big list
                 intersections.addAll(inter);
             }
@@ -66,6 +65,4 @@ public class Geometries implements Intersectable {
             return null;
         return intersections;
     }
-
-
 }

@@ -17,7 +17,7 @@ import static primitives.Util.isZero;
  * A sphere is a geometrical object in three-dimensional space that is the surface of a ball
  * The sphere is defined by a radius and a point3D (the center of the sphere)
  */
-public class Sphere implements Geometry {
+public class Sphere extends Geometry {
     //FIELDS
     private Point3D center;
     private double radius;
@@ -50,14 +50,13 @@ public class Sphere implements Geometry {
     }
 
     //METHODS
-    public List<Point3D> findIntersections(Ray ray){
-        List<Point3D> list;
+    public List<GeoPoint> findGeoIntersections(Ray ray){
         Vector u;
 
         if(ray.getP0().equals(center)){
             Vector v=ray.getDir().normalize();
             Point3D point3D=center.add(v.scale(radius));
-            return List.of(point3D);
+            return List.of(new GeoPoint(this, point3D));
         }
 
         u=getCenter().subtract(ray.getP0());
@@ -77,14 +76,14 @@ public class Sphere implements Geometry {
             p1=ray.getPoint(t1);
             //Case: p0 is equal to the intersection -> No intersection
             if(!p1.equals(ray.getP0()))
-                return List.of(p1);
+                return List.of(new GeoPoint(this, p1));
             return null;
         }
         if(t1<=0&&t2>0){
             p2=ray.getPoint(t2);
             //Case: p0 is equal to the intersection -> No intersection
             if(!p2.equals(ray.getP0()))
-                return List.of(p2);
+                return List.of(new GeoPoint(this, p2));
             return null;
         }
         //Case: there is two intersections
@@ -92,14 +91,13 @@ public class Sphere implements Geometry {
             p2=ray.getPoint(t2);
             p1=ray.getPoint(t1);
             if(p1.equals(ray.getP0()))
-                return List.of(p2);
+                return List.of(new GeoPoint(this, p2));
             if(p2.equals(ray.getP0()))
-                return List.of(p1);
-            return List.of(p1,p2);
+                return List.of(new GeoPoint(this, p1));
+            return List.of(new GeoPoint(this, p1),new GeoPoint(this, p2));
         }
         return null;
     }
-
 
     @Override
     public String toString() {

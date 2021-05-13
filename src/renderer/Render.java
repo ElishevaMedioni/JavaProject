@@ -9,9 +9,9 @@ import java.util.MissingFormatArgumentException;
 import java.util.MissingResourceException;
 
 public class Render {
-    private ImageWriter imageWriter;
-    private Camera camera;
-    private RayTracerBase rayTracerBase;
+    private ImageWriter imageWriter=null;
+    private Camera camera=null;
+    private RayTracerBase rayTracerBase=null;
 
     public Render setImageWriter(ImageWriter _imageWriter){
         imageWriter=_imageWriter;
@@ -37,7 +37,7 @@ public class Render {
         if(imageWriter==null)
             throw new MissingResourceException("Missing field","UnsupportedOperationException",
                     "imageWriter");
-        if(camera==null||rayTracerBase==null)
+        if(camera==null)
             throw new MissingResourceException("Missing field","UnsupportedOperationException",
                     "camera");
         if(rayTracerBase==null)
@@ -70,7 +70,7 @@ public class Render {
         for(int i=0;i<imageWriter.getNx();i++)
             for(int j=0;j<imageWriter.getNy();j++){
                 if(i%interval==0 || j%interval==0)
-                    imageWriter.writePixel(i,j, Color.BLACK);
+                    imageWriter.writePixel(i,j, color);
             }
         imageWriter.writeToImage();
     }

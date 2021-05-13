@@ -1,20 +1,23 @@
 package scene;
 
 import elements.AmbientLight;
+import elements.LightSource;
 import geometries.Geometries;
 import geometries.Intersectable;
 import primitives.Color;
 
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  *Scene is a passive class it's just a class for storage without any method
  */
 public class Scene {
     public String name;
-    public Color background;
-    public AmbientLight ambientLight;
+    public Color background=Color.BLACK;
+    public AmbientLight ambientLight=new AmbientLight();
     public Geometries geometries;
+    public List<LightSource> lights=new LinkedList<LightSource>();
 
     //CONSTRUCTOR
     public Scene(String _name){
@@ -38,6 +41,11 @@ public class Scene {
 
     public Scene setGeometries(Geometries _geometries){
         geometries=_geometries;
+        return this;
+    }
+
+    public Scene setLights(List<LightSource> lights){
+        this.lights=lights;
         return this;
     }
 }

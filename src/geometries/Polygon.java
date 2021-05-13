@@ -13,7 +13,7 @@ import static primitives.Util.*;
  *
  * @author Dan
  */
-public class Polygon implements Geometry {
+public class Polygon extends Geometry {
     /**
      * List of polygon's vertices
      */
@@ -44,10 +44,6 @@ public class Polygon implements Geometry {
      *                                  <li>The polygon is concave (not convex)</li>
      *                                  </ul>
      */
-
-    public List<Point3D> findIntersections(Ray ray){
-        return null;
-    }
 
     public Polygon(Point3D... vertices) {
         if (vertices.length < 3)
@@ -87,6 +83,10 @@ public class Polygon implements Geometry {
             if (positive != (edge1.crossProduct(edge2).dotProduct(n) > 0))
                 throw new IllegalArgumentException("All vertices must be ordered and the polygon must be convex");
         }
+    }
+
+    public List<GeoPoint> findGeoIntersections(Ray ray){
+        return null;
     }
 
     @Override

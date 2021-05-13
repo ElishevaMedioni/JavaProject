@@ -85,7 +85,7 @@ public class Vector
      * @param vector vector value
      * @return the subtraction of the vectors
      */
-    public Vector subtract(Vector vector){
+    public Vector substract(Vector vector){
         return new Vector(getHead().x.coord-vector.getHead().x.coord,
                 getHead().y.coord-vector.getHead().y.coord,
                 getHead().z.coord-vector.getHead().z.coord);
