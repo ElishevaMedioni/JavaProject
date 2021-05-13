@@ -4,6 +4,8 @@ import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
+import java.awt.*;
+
 /**
  *Light source is far away
  * no attenuation with distance
@@ -22,7 +24,7 @@ public class DirectionalLight extends Light implements LightSource{
     }
 
     @Override
-    public Color getIntensity() {
+    public Color getIntensity(Point3D p) {
         return super.getIntensity();
     }
 
