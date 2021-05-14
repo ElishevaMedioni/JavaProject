@@ -20,6 +20,6 @@ public class SpotLight extends PointLight{
 
     @Override
     public Vector getL(Point3D p) {
-        return direction.normalized();
+        return super.getL(p);
     }
 }

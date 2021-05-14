@@ -111,7 +111,6 @@ public class Ray {
     public boolean equals(Object object) {
         if (this == object) return true;
         if (!(object instanceof Ray)) return false;
-        //if (!super.equals(object)) return false;
         Ray ray = (Ray) object;
         return java.util.Objects.equals(p0, ray.p0) && java.util.Objects.equals(dir, ray.dir);
     }

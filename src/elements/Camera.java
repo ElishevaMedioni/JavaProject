@@ -106,7 +106,7 @@ public class Camera {
      */
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i){
 
-        //calculate the center of the image
+        //calculate the center of the view plane
         Point3D pC=p0.add(vTo.scale(distance));
 
         //calculate the height and the width of each pixel
