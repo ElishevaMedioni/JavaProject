@@ -5,7 +5,7 @@ import primitives.Point3D;
 import primitives.Vector;
 
 /**
- * gdhdd
+ * a lamp projecting a narrow, intense beam of light directly on to a person, an object, a place etc..
  */
 public class SpotLight extends PointLight{
     private Vector direction;
