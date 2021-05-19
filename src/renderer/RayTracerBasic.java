@@ -11,6 +11,8 @@ import static primitives.Util.alignZero;
 
 public class RayTracerBasic extends RayTracerBase{
     private static final double DELTA=0.1;
+    private static final int MAX_CALC_COLOR_LEVEL=10;
+    private static final double MIN_CALC_COLOR_K=0.001;
 
     private boolean unshaded(LightSource light,Vector l, Vector n, Intersectable.GeoPoint geoPoint) {
         Vector lightDirection = l.scale(-1); //change to the opposite direction of the vector
@@ -87,4 +89,32 @@ public class RayTracerBasic extends RayTracerBase{
                 .add(intersection.geometry.getEmission())
                 .add(calcLocalEffects(intersection, ray));
     }
+
+    /**
+     * The ray of light that leaves the mirror
+     * At the point of incidence where the ray strikes the mirror, a line can be drawn perpendicular to the surface of the mirror
+     * @param n normal vector of the geometry
+     * @param point intersection with the ray
+     * @param ray value of the ray
+     * @return reflection ray
+     */
+    public Ray constructReflectedRay(Vector n, Point3D point, Ray ray){
+        Vector delta = n.scale(n.dotProduct(ray.getDir()) > 0 ? DELTA : -DELTA);
+        return new Ray(point.add(delta), ray.getDir().subtract(n.scale(2*n.dotProduct(ray.getDir()))));
+    }
+
+    /**
+     *in our implementation we will assume that all geometries have the same refraction index of 1
+     * without angle of incidence
+     * @param n normal vector of the geometry
+     * @param point intersection with the ray
+     * @param ray value of the ray
+     * @return refracted ray
+     */
+    public Ray constructRefractedRay(Vector n, Point3D point, Ray ray){
+        Vector delta = n.scale(n.dotProduct(ray.getDir()) > 0 ? DELTA : -DELTA);
+        return new Ray(point.add(delta), ray.getDir());
+    }
+
+
 }

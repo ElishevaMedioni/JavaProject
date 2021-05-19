@@ -9,6 +9,8 @@ public class Material {
     public double kD=0;
     public double kS=0;
     public int nShininess=0;
+    public double kT=0.0;
+    public double kR=0.0;
 
     /**
      * setKD, setKS, setNShininess - builder design pattern
@@ -25,6 +27,16 @@ public class Material {
 
     public Material setNShininess(int nShininess){
         this.nShininess=nShininess;
+        return this;
+    }
+
+    public Material setKT(double kT){
+        this.kT=kT;
+        return this;
+    }
+
+    public Material setKR(double kR){
+        this.kR=kR;
         return this;
     }
 }
