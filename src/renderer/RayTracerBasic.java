@@ -10,6 +10,27 @@ import java.util.List;
 import static primitives.Util.alignZero;
 
 public class RayTracerBasic extends RayTracerBase{
+    private static final double DELTA=0.1;
+
+    private boolean unshaded(LightSource light,Vector l, Vector n, Intersectable.GeoPoint geoPoint) {
+        Vector lightDirection = l.scale(-1); //change to the opposite direction of the vector
+
+        //if the direction of the vector normal is the same to the direction of the light multiplied by DELTA
+        Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);
+        Point3D point = geoPoint.point.add(delta);
+        Ray lightRay = new Ray(point, lightDirection);
+
+        //if there is intersection -> there is shadow
+        List<Intersectable.GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+        if(intersections == null) return true;
+        double lightDistance = light.getDistance(geoPoint.point);
+
+        //checking if the intersections are behind the camera (there is no shadow)
+        for(Intersectable.GeoPoint gp : intersections)
+            if(alignZero(gp.point.distance(geoPoint.point) - lightDistance)<=0)
+                return false;
+        return true;
+    }
 
     public RayTracerBasic(Scene scene){
         super(scene);
@@ -33,7 +54,7 @@ public class RayTracerBasic extends RayTracerBase{
     }
 
     public Color calcSpecular(double kS, Vector l, Vector n, Vector v, int nShininess, Color intensity){
-        Vector r=l.substract(n.scale(2*n.dotProduct(l)));
+        Vector r=l.subtract(n.scale(2*n.dotProduct(l)));
         return intensity.scale(Math.pow(Math.max(0, -v.dotProduct(r)),nShininess));
     }
 
@@ -41,7 +62,8 @@ public class RayTracerBasic extends RayTracerBase{
         Vector v = ray.getDir ();
         Vector n = intersection.geometry.getNormal(intersection.point);
         double nv = alignZero(n.dotProduct(v));
-        if (nv == 0) return Color.BLACK;
+        if (nv == 0)
+            return Color.BLACK;
         Material material = intersection.geometry.getMaterial();
         int nShininess = material.nShininess;
         double kd = material.kD, ks = material.kS;
@@ -50,9 +72,11 @@ public class RayTracerBasic extends RayTracerBase{
             Vector l = lightSource.getL(intersection.point);
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
-                Color lightIntensity = lightSource.getIntensity(intersection.point);
-                color = color.add(calcDiffusive(kd, l, n, lightIntensity),
-                        calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+                if(unshaded(lightSource, l, n, intersection)){
+                    Color lightIntensity = lightSource.getIntensity(intersection.point);
+                    color = color.add(calcDiffusive(kd, l, n, lightIntensity),
+                            calcSpecular(ks, l, n, v, nShininess, lightIntensity));
+                }
             }
         }
         return color;

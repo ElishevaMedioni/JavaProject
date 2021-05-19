@@ -34,8 +34,8 @@ public class Plane extends Geometry{
         //calculate the normal of the plane:
         q0 = p1;
         //calculate two vectors that are on the plane
-        Vector vec1 = (new Vector(p1)).substract(new Vector(p2));
-        Vector vec2 = (new Vector(p1)).substract(new Vector(p3));
+        Vector vec1 = (new Vector(p1)).subtract(new Vector(p2));
+        Vector vec2 = (new Vector(p1)).subtract(new Vector(p3));
         Vector vecN = vec1.crossProduct(vec2);
         normal = vecN.normalize();
     }

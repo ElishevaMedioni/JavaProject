@@ -27,7 +27,7 @@ class VectorTests extends Object {
     void testSubtract() {
         // ============ Equivalence Partitions Tests ==============
         //TS01: Test that the subtract works properly
-        Vector vSub=v1.substract(v2), vEx=new Vector(3,6,9);
+        Vector vSub=v1.subtract(v2), vEx=new Vector(3,6,9);
         assertEquals("ERROR: subtract() wrong value", vSub, vEx);
     }
 
