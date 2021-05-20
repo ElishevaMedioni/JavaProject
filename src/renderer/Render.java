@@ -3,9 +3,6 @@ package renderer;
 import elements.Camera;
 import primitives.Color;
 import primitives.Ray;
-import scene.Scene;
-
-import java.util.MissingFormatArgumentException;
 import java.util.MissingResourceException;
 
 public class Render {

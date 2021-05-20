@@ -9,6 +9,8 @@ import java.util.Objects;
  * Ray Class has a direction and a starting point
  */
 public class Ray {
+    private static final double DELTA=0.1;
+
     /**
      * point3D and vector field
      */
@@ -58,7 +60,12 @@ public class Ray {
 
         p0 = _p0;
         dir = _dir;
+    }
 
+    public Ray(Point3D p, Vector dir, Vector n) {
+        Vector delta = n.scale(n.dotProduct(dir) > 0 ? DELTA : -DELTA);
+        p0 = p.add(delta);
+        this.dir=dir;
     }
 
     /**
