@@ -85,12 +85,55 @@ public class Polygon extends Geometry {
         }
     }
 
-    public List<GeoPoint> findGeoIntersections(Ray ray){
+    /*public List<GeoPoint> findGeoIntersections(Ray ray){
         return null;
-    }
+    }*/
 
     @Override
     public Vector getNormal(Point3D point) {
         return plane.getNormal();
+    }
+
+    @Override
+    public List<Intersectable.GeoPoint> findGeoIntersections(Ray ray) {
+        List<Intersectable.GeoPoint> result = plane.findGeoIntersections(ray);
+        if (result == null) {
+            return null;
+        }
+
+        Point3D P0 = ray.getP0();
+        Vector v = ray.getDir();
+
+        Point3D P1 =vertices.get(1);
+        Point3D P2 = vertices.get(0);
+
+        Vector v1 = P1.subtract(P0);
+        Vector v2 = P2.subtract(P0);
+
+        double sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+
+        if (isZero(sign)) {
+            return null;
+        }
+
+        boolean positive = sign > 0;
+
+        //iterate through all vertices of the polygon
+        for (int i = vertices.size() - 1; i > 0; --i) {
+            v1 = v2;
+            v2 = vertices.get(i).subtract(P0);
+
+            sign = alignZero(v.dotProduct(v1.crossProduct(v2)));
+            if (isZero(sign)) {
+                return null;
+            }
+
+            if (positive != (sign > 0)) {
+                return null;
+            }
+        }
+        Point3D planeGo=plane.findGeoIntersections(ray).get(0).point;
+        return List.of(new GeoPoint(this,planeGo));
+        //return result;
     }
 }

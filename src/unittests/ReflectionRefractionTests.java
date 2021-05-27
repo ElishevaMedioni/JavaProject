@@ -3,14 +3,18 @@
  */
 package unittests;
 
+import geometries.Polygon;
 import org.junit.Test;
 
 import elements.*;
 import geometries.Sphere;
 import geometries.Triangle;
 import primitives.*;
+import primitives.Color;
 import renderer.*;
 import scene.Scene;
+
+import java.awt.*;
 
 /**
  * Tests for reflection and transparency functionality, test for partial shadows
@@ -111,6 +115,145 @@ public class ReflectionRefractionTests {
 				.setKL(4E-5).setKQ(2E-7));
 
 		ImageWriter imageWriter = new ImageWriter("refractionShadow", 600, 600);
+		Render render = new Render() //
+				.setImageWriter(imageWriter) //
+				.setCamera(camera) //
+				.setRayTracerBase(new RayTracerBasic(scene));
+
+		render.renderImage();
+		render.writeToImage();
+
+	}
+
+	/**
+	 * Produce a picture
+	 */
+	@Test
+	public void FinalPicture() {
+		Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+				.setViewPlaneSize(200, 200).setDistance(1000);
+		scene.background=new Color(5,5,94);
+		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
+
+		scene.geometries.add( //
+				//door
+				new Polygon(new Point3D(-80,-50,0), new Point3D(-60,-50,0),
+						new Point3D(-60,-100,0), new Point3D(-80,-100,0))
+						.setEmission(new Color(155,9,9)),
+
+				//windows 1 left
+				new Polygon(new Point3D(-95,-10,0), new Point3D(-75,-10,0),
+						new Point3D(-75,-30,0), new Point3D(-95,-30,0))
+						.setEmission(new Color(224,224,224))
+						.setMaterial(new Material().setNShininess(30).setKT(1).setKR(1)),
+
+				//windows 2 right
+				new Polygon(new Point3D(-65,-10,0), new Point3D(-45,-10,0),
+						new Point3D(-45,-30,0), new Point3D(-65,-30,0))
+						.setEmission(new Color(224,224,224))
+						.setMaterial(new Material().setNShininess(30).setKT(1).setKR(1)),
+
+				//house
+				new Polygon(new Point3D(-100,0,0), new Point3D(-40,0,0),
+						new Point3D(-40,-100,0), new Point3D(-100,-100,0))
+				.setEmission(new Color(219,170,120)),
+
+				//dome
+				new Sphere(new Point3D(40,20,-30),30.0)
+						.setEmission(new Color(187,161,79)),
+
+				//rectangle pour dome
+				new Polygon(new Point3D(10,20,0), new Point3D(70,20,0),
+						new Point3D(70,0,0), new Point3D(10,0,0))
+						.setEmission(new Color(255,0,0)),
+
+				//pierre du mur 1
+				new Polygon(new Point3D(-40,-75,0), new Point3D(0,-75,0),
+						new Point3D(0,-100,0), new Point3D(-40,-100,0))
+						.setEmission(new Color(214,175,120)),
+
+				//pierre du mur 2
+				new Polygon(new Point3D(0,-75,0), new Point3D(20,-75,0),
+						new Point3D(20,-100,0), new Point3D(0,-100,0))
+						.setEmission(new Color(204,156,89)),
+
+				//pierre du mur 3
+				new Polygon(new Point3D(20,-75,0), new Point3D(70,-75,0),
+						new Point3D(70,-100,0), new Point3D(20,-100,0))
+						.setEmission(new Color(212,171,114)),
+
+				//pierre du mur 4
+				new Polygon(new Point3D(70,-75,0), new Point3D(100,-75,0),
+						new Point3D(100,-100,0), new Point3D(70,-100,0))
+						.setEmission(new Color(206,160,95)),
+
+				//pierre du mur 5
+				new Polygon(new Point3D(-40,-50,0), new Point3D(-10,-50,0),
+						new Point3D(-10,-75,0), new Point3D(-40,-75,0))
+						.setEmission(new Color(202,152,82)),
+
+				//pierre du mur 6
+				new Polygon(new Point3D(-10,-50,0), new Point3D(30,-50,0),
+						new Point3D(30,-75,0), new Point3D(-10,-75,0))
+						.setEmission(new Color(210,167,107)),
+
+				//pierre du mur 7
+				new Polygon(new Point3D(30,-50,0), new Point3D(80,-50,0),
+						new Point3D(80,-75,0), new Point3D(30,-75,0))
+						.setEmission(new Color(200,149,76)),
+
+				//pierre du mur 8
+				new Polygon(new Point3D(80,-50,0), new Point3D(100,-50,0),
+						new Point3D(100,-75,0), new Point3D(80,-75,0))
+						.setEmission(new Color(208,164,101)),
+
+				//pierre du mur 9
+				new Polygon(new Point3D(-40,-25,0), new Point3D(-20,-25,0),
+						new Point3D(-20,-50,0), new Point3D(-40,-50,0))
+						.setEmission(new Color(200,149,76)),
+
+				//pierre du mur 10
+				new Polygon(new Point3D(-20,-25,0), new Point3D(10,-25,0),
+						new Point3D(10,-50,0), new Point3D(-20,-50,0))
+						.setEmission(new Color(204,156,89)),
+
+				//pierre du mur 11
+				new Polygon(new Point3D(10,-25,0), new Point3D(50,-25,0),
+						new Point3D(50,-50,0), new Point3D(10,-50,0))
+						.setEmission(new Color(214,175,120)),
+
+				//pierre du mur 12
+				new Polygon(new Point3D(50,-25,0), new Point3D(100,-25,0),
+						new Point3D(100,-50,0), new Point3D(50,-50,0))
+						.setEmission(new Color(206,160,95)),
+
+				//pierre du mur 13
+				new Polygon(new Point3D(-40,0,0), new Point3D(10,0,0),
+						new Point3D(10,-25,0), new Point3D(-40,-25,0))
+						.setEmission(new Color(212,171,114)),
+
+				//pierre du mur 14
+				new Polygon(new Point3D(10,0,0), new Point3D(30,0,0),
+						new Point3D(30,-25,0), new Point3D(10,-25,0))
+						.setEmission(new Color(202,152,82)),
+
+				//pierre du mur 15
+				new Polygon(new Point3D(30,0,0), new Point3D(60,0,0),
+						new Point3D(60,-25,0), new Point3D(30,-25,0))
+						.setEmission(new Color(208,164,101)),
+
+				//pierre du mur 16
+				new Polygon(new Point3D(60,0,0), new Point3D(100,0,0),
+						new Point3D(100,-25,0), new Point3D(60,-25,0))
+						.setEmission(new Color(210,167,107))
+
+		);
+
+
+		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(60, 50, 0), new Vector(0, 0, -1)) //
+				.setKL(4E-5).setKQ(2E-7));
+
+		ImageWriter imageWriter = new ImageWriter("producingPicture", 600, 600);
 		Render render = new Render() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
