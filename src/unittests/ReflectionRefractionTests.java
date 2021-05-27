@@ -198,6 +198,7 @@ public class ReflectionRefractionTests {
 						new Point3D(-10,-75,0), new Point3D(-40,-75,0))
 						.setEmission(new Color(202,152,82)),
 
+
 				//pierre du mur 6
 				new Polygon(new Point3D(-10,-50,0), new Point3D(30,-50,0),
 						new Point3D(30,-75,0), new Point3D(-10,-75,0))
