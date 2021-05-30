@@ -73,7 +73,7 @@ public class RayTracerBasic extends RayTracerBase{
 
     public Color calcSpecular(double kS, Vector l, Vector n, Vector v, int nShininess, Color intensity){
         Vector r=l.subtract(n.scale(2*n.dotProduct(l)));
-        return intensity.scale(Math.pow(Math.max(0, -v.dotProduct(r)),nShininess));
+        return intensity.scale(kS*Math.pow(Math.max(0, -v.dotProduct(r)),nShininess));
     }
 
     private Color calcLocalEffects(Intersectable.GeoPoint intersection, Ray ray, double k) {

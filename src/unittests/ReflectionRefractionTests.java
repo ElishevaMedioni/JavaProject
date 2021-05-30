@@ -278,13 +278,17 @@ public class ReflectionRefractionTests {
 		Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
 				.setViewPlaneSize(200, 200).setDistance(1000);
 		scene.background=new Color(25,25,112);
-		//scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
-		new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
-				.setKL(1E-5).setKQ(1.5E-7);
+		scene.setAmbientLight(new AmbientLight(new Color(500,500,500), 0.015));
+		scene.lights.add( //
+				new SpotLight(new Color(java.awt.Color.YELLOW), new Point3D(0, 100, -100), new Vector(0, -6, 10)) //
+						.setKL(4E-4).setKQ(2E-5));
+//		scene.lights.add( //
+//				new SpotLight(new Color(java.awt.Color.YELLOW), new Point3D(-50, 140, 0), new Vector(0, -9, 20)) //
+//						.setKL(4E-4).setKQ(2E-5));
 		scene.geometries.add( //
 				//lune
-				new Sphere(new Point3D(0,-110,0),100.0)
-						.setEmission(new Color(255,213,94))
+				new Sphere(new Point3D(0,-110,-40),100.0)
+						.setEmission(new Color(255,153,51).add(new Color(47,7,7)))
 						.setMaterial(new Material().setKD(0.8).setKS(0.8).setNShininess(200).setKT(0).setKR(0.7)),
 				//tete
 				new Sphere(new Point3D(-16.5, 28.5,0), 8.5)
@@ -310,9 +314,13 @@ public class ReflectionRefractionTests {
 				new Triangle(new Point3D(-25,20,0), new Point3D(-25,4,0),
 						new Point3D(-28,4,0))
 						.setEmission(new Color(255,255,255)),
-				//mars
+				//mars transparent
 				new Sphere(new Point3D(-50,50,200), 10d)
-							.setEmission(new Color(188,39,50)),
+							//.setEmission(new Color(java.awt.Color.RED).add(new Color(25,25,112)))
+							.setMaterial(new Material().setKT(0.6).setNShininess(200).setKR(0.4)),
+				//mars
+				new Sphere(new Point3D(-50,50,195), 10d)
+						.setEmission(new Color(153,0,0)),
 				//etoile jaune
 				new Sphere(new Point3D(75,75,0), 0.7d)
 							.setEmission(new Color(255,255,0)),
