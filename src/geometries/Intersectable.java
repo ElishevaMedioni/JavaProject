@@ -50,10 +50,10 @@ public interface Intersectable {
             if (this == o) return true;
             if (!(o instanceof GeoPoint)) return false;
             GeoPoint geoPoint = (GeoPoint) o;
-            if(!((geoPoint.geometry instanceof Sphere)&&(geometry instanceof Sphere))
-            ||!((geoPoint.geometry instanceof Tube)&&(geometry instanceof Tube))
-            ||!((geoPoint.geometry instanceof Polygon)&&(geometry instanceof Polygon))
-            ||!((geoPoint.geometry instanceof Plane)&&(geometry instanceof Plane)))
+            if(!((geoPoint.geometry instanceof Sphere)&&(this.geometry instanceof Sphere))
+            ||!((geoPoint.geometry instanceof Tube)&&(this.geometry instanceof Tube))
+            ||!((geoPoint.geometry instanceof Polygon)&&(this.geometry instanceof Polygon))
+            ||!((geoPoint.geometry instanceof Plane)&&(this.geometry instanceof Plane)))
                 return false;
             return Objects.equals(geometry, geoPoint.geometry) && Objects.equals(point, geoPoint.point);
         }

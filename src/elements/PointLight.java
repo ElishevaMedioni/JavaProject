@@ -11,6 +11,7 @@ public class PointLight extends Light implements LightSource{
     private Point3D position;
     /**
      * kC, kL, kQ are factors for attenuation
+     * kC is required to ensure that the denominator > 1
      */
     private double kC=1;
     private double kL=0;
@@ -44,19 +45,34 @@ public class PointLight extends Light implements LightSource{
         return this;
     }
 
+    /**
+     * color of the object on a specific point
+     * @param point poitn3D on the object
+     * @return color
+     */
     @Override
     public Color getIntensity(Point3D point) {
-        double distance=point.distance(position);
+        double distance=getDistance(point);
         double denominator=kC+kL*distance+kQ*distance*distance;
         return getIntensity().reduce(denominator);
     }
 
+    /**
+     * vector from the light source to a point3D on the object
+     * @param p point3D on the object
+     * @return the vector
+     */
     @Override
     public Vector getL(Point3D p) {
         Vector vector=p.subtract(position);
         return vector.normalized();
     }
 
+    /**
+     * distance between light and object
+     * @param point point3D on the object
+     * @return infinity - the light source is far away (like sun)
+     */
     @Override
     public double getDistance(Point3D point){
         return position.distance(point);

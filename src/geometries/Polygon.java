@@ -85,10 +85,6 @@ public class Polygon extends Geometry {
         }
     }
 
-    /*public List<GeoPoint> findGeoIntersections(Ray ray){
-        return null;
-    }*/
-
     @Override
     public Vector getNormal(Point3D point) {
         return plane.getNormal();
@@ -134,6 +130,5 @@ public class Polygon extends Geometry {
         }
         Point3D planeGo=plane.findGeoIntersections(ray).get(0).point;
         return List.of(new GeoPoint(this,planeGo));
-        //return result;
     }
 }

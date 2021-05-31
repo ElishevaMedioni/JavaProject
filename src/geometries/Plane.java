@@ -66,7 +66,7 @@ public class Plane extends Geometry{
         double x1=normal.dotProduct(ray.getDir()),
                 x2=normal.dotProduct(q0.subtract(ray.getP0()));
         // 1- checking if the p0 (Point3D) of the ray is equal to q0 (Point3D) of the plane
-        // 2- checking if the  ray is orthogonal to the plane
+        // 2- checking if the  ray is orthogonal to the plane (if orthogonal then x1=0 -> x1 is denominator, denominator not 0)
         // 3- checking if the ray is parallel to the plane
         if(q0.equals(ray.getP0())||isZero(x1)|| isZero(x2))
             return null;

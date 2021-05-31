@@ -18,8 +18,8 @@ public class SpotLight extends PointLight{
 
     @Override
     public Color getIntensity(Point3D p) {
-       // return super.getIntensity().scale(Math.max(0, direction.dotProduct(getL(p))));
-        double cos=Util.alignZero(this.direction.dotProduct(super.getL(p)));
+        double cos=Util.alignZero(this.direction.dotProduct(getL(p)));
+        //take the max between 0-cos if negative number or zero -> cos=0
         cos= cos > 0 ? cos : 0;
         return super.getIntensity(p).scale(cos);
     }

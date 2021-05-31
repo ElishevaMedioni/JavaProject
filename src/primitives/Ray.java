@@ -63,7 +63,7 @@ public class Ray {
     }
 
     public Ray(Point3D p, Vector dir, Vector n) {
-        Vector delta = n.scale(n.dotProduct(dir) > 0 ? DELTA : -DELTA);
+        Vector delta = n.scale(n.dotProduct(dir)     > 0 ? DELTA : -DELTA);
         p0 = p.add(delta);
         this.dir=dir;
     }
