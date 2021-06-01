@@ -137,6 +137,8 @@ public class ReflectionRefractionTests {
 		scene.lights.add( //
 				new SpotLight(new Color(java.awt.Color.YELLOW), new Point3D(0, 100, -100), new Vector(0, -6, 10)) //
 						.setKL(4E-4).setKQ(2E-5));
+		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(60, 50, 0), new Vector(0, 0, -1)) //
+				.setKL(4E-5).setKQ(2E-7));
 //		scene.lights.add( //
 //				new SpotLight(new Color(java.awt.Color.YELLOW), new Point3D(-50, 140, 0), new Vector(0, -9, 20)) //
 //						.setKL(4E-4).setKQ(2E-5));
@@ -145,27 +147,27 @@ public class ReflectionRefractionTests {
 				new Sphere(new Point3D(0,-110,-40),100.0)
 						.setEmission(new Color(255,153,51).add(new Color(47,7,7)))
 						.setMaterial(new Material().setKD(0.8).setKS(0.8).setNShininess(200).setKT(0).setKR(0.7)),
-				//tete
+				//head (helmet)
 				new Sphere(new Point3D(-16.5, 28.5,0), 8.5)
 						.setEmission(new Color(20, 20, 20)) //
 						.setMaterial(new Material().setKR(0.5)),
-				//pied droit
+				//right foot
 				new Polygon(new Point3D(-13,0,0), new Point3D(-10,0,0),
 						new Point3D(-10,-15,0), new Point3D(-13,-15,0))
 						.setEmission(new Color(255,255,255)),
-				//pied gauche
+				//left foot
 				new Polygon(new Point3D(-23,0,0), new Point3D(-20,0,0),
 						new Point3D(-20,-15,0), new Point3D(-23,-15,0))
 						.setEmission(new Color(255,255,255)),
-				//corp
+				//body
 				new Polygon(new Point3D(-25,0,0), new Point3D(-8,0,0),
 						new Point3D(-8,20,0), new Point3D(-25,20,0))
 						.setEmission(new Color(255,255,255)),
-				//bras droit
+				//right arm
 				new Triangle(new Point3D(-8,20,0), new Point3D(-5,4,0),
 						new Point3D(-8,4,0))
 						.setEmission(new Color(255,255,255)),
-				//bras gauche
+				//left arm
 				new Triangle(new Point3D(-25,20,0), new Point3D(-25,4,0),
 						new Point3D(-28,4,0))
 						.setEmission(new Color(255,255,255)),
@@ -176,123 +178,123 @@ public class ReflectionRefractionTests {
 				//mars
 				new Sphere(new Point3D(-50,50,195), 10d)
 						.setEmission(new Color(153,0,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(75,75,0), 0.7d)
 							.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(48,70,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(-75,50,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(35,47,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(89,95,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(-89,-43,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(10,-24,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(-50,-39,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(10,-75,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(-75,10,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(-50,40,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(-10,85,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(90,-10,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(85,20,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(20,10,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(50,50,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(65,75,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(35,66,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(40,-25,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(78,10,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(-34,78,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(50,0,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(-80,80,0), 0.7d)
 						.setEmission(new Color(255,255,0)),
-				//etoile jaune
+				//star
 				new Sphere(new Point3D(-15,50,0), 0.7d)
 						.setEmission(new Color(255,255,0))
 		);
 
-		//etoile
+		//stars on the american flag
 		for(double i=42; i>31;i-=1.5)
 			for(double j=8.5;j<25;j+=2)
 				scene.geometries.add(new Sphere(new Point3D(j, i, 0.5),0.5 )
 						.setEmission(new Color(255,255,255)));
 		scene.geometries.add( //
-				//barre noir drapeau
+				//black bar flag
 				new Polygon(new Point3D(7,43,0), new Point3D(6,43,0),
 						new Point3D(6,-15,0),new Point3D(7,-15,0))
 							.setEmission(Color.BLACK),
-				//carre bleu du drapeau
+				//blue square of the flag
 				new Polygon(new Point3D(7,43,0), new Point3D(25, 43, 0),
 						new Point3D(25, 31, 0), new Point3D(7, 31, 0))
 						.setEmission(new Color(0,0,255)),
-				//bandes rouge 1
+				//red strip 1
 				new Polygon(new Point3D(25, 43, 0), new Point3D(43, 43, 0),
 						new Point3D(43, 41, 0), new Point3D(25, 41, 0))
 						.setEmission(new Color(255,0,0)),
-				//bandes rouge 2
+				//red strip 2
 				new Polygon(new Point3D(25, 39, 0), new Point3D(43, 39, 0),
 						new Point3D(43, 37, 0), new Point3D(25, 37, 0))
 						.setEmission(new Color(255,0,0)),
-				//bandes rouge 3
+				//red strip 3
 				new Polygon(new Point3D(25, 35, 0), new Point3D(43, 35, 0),
 						new Point3D(43, 33, 0), new Point3D(25, 33, 0))
 						.setEmission(new Color(255,0,0)),
-				//bandes rouge 4
+				//red strip 4
 				new Polygon(new Point3D(7, 31, 0), new Point3D(43, 31, 0),
 						new Point3D(43, 29, 0), new Point3D(7, 29, 0))
 						.setEmission(new Color(255,0,0)),
-				//bandes rouge 5
+				//red strip 5
 				new Polygon(new Point3D(7, 27, 0), new Point3D(43, 27, 0),
 						new Point3D(43, 25, 0), new Point3D(7, 25, 0))
 						.setEmission(new Color(255,0,0)),
-				//bandes rouge 6
+				//red strip 6
 				new Polygon(new Point3D(7, 23, 0), new Point3D(43, 23, 0),
 						new Point3D(43, 21, 0), new Point3D(7, 21, 0))
 						.setEmission(new Color(255,0,0)),
-				//bandes rouge 7
+				//red strip 7
 				new Polygon(new Point3D(7, 19, 0), new Point3D(43, 19, 0),
 						new Point3D(43, 17, 0), new Point3D(7, 17, 0))
 						.setEmission(new Color(255,0,0)),
-				//drapeau
+				//flag (white background)
 				new Polygon(new Point3D(7, 17, 0), new Point3D(7, 43, 0),
 						new Point3D(43, 43, 0), new Point3D(43, 17, 0))
 						.setEmission(new Color(255,255,255))
@@ -300,8 +302,6 @@ public class ReflectionRefractionTests {
 		);
 
 
-		scene.lights.add(new SpotLight(new Color(700, 400, 400), new Point3D(60, 50, 0), new Vector(0, 0, -1)) //
-				.setKL(4E-5).setKQ(2E-7));
 
 		ImageWriter imageWriter = new ImageWriter("moon", 600, 600);
 		Render render = new Render() //

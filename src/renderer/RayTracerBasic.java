@@ -138,6 +138,8 @@ public class RayTracerBasic extends RayTracerBase{
         Vector r=v.subtract(vnn.scale(2));
         double nr=n.dotProduct(r);
         if(Util.isZero(nr))
+            //don't need to move the ray with delta because if the ray is orthogonal to the normal, the reflected ray
+            //will be the continuation of the beginning the ray
             return new Ray(point, r);
         return new Ray(point, r, n); //use the new constructor for the ray
     }
