@@ -10,19 +10,19 @@ public class Render {
     private Camera camera=null;
     private RayTracerBase rayTracerBase=null;
 
-    public Render setImageWriter(ImageWriter _imageWriter){
-        imageWriter=_imageWriter;
+    public Render setImageWriter(ImageWriter imageWriter){
+        this.imageWriter=imageWriter;
         return this;
     }
 
 
-    public Render setCamera(Camera _camera){
-        camera=_camera;
+    public Render setCamera(Camera camera){
+        this.camera=camera;
         return this;
     }
 
-    public Render setRayTracerBase(RayTracerBase _rayTracerBase){
-        rayTracerBase=_rayTracerBase;
+    public Render setRayTracerBase(RayTracerBase rayTracerBase){
+        this.rayTracerBase=rayTracerBase;
         return this;
     }
 

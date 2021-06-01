@@ -40,10 +40,10 @@ public class Plane extends Geometry{
         normal = vecN.normalize();
     }
 
-    public Plane(Point3D point3D, Vector myNormal)
+    public Plane(Point3D q0, Vector normal)
     {
-        normal = myNormal;
-        q0 = point3D;
+        this.normal = normal;
+        this.q0 = q0;
     }
 
     //GETTER

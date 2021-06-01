@@ -20,27 +20,27 @@ public class Scene {
     public List<LightSource> lights=new LinkedList<LightSource>();
 
     //CONSTRUCTOR
-    public Scene(String _name){
-        name=_name;
-        geometries=new Geometries();
+    public Scene(String name){
+        this.name=name;
+        this.geometries=new Geometries();
     }
 
     /**
      * for the setter of this class, we use the builder design pattern.
      * In order to improve the construction of the object (better than a constructor with a lot of parameters)
      */
-    public Scene setBackground(Color _background){
-        background=_background;
+    public Scene setBackground(Color background){
+        this.background=background;
         return this;
     }
 
-    public Scene setAmbientLight(AmbientLight _ambientLight){
-        ambientLight=_ambientLight;
+    public Scene setAmbientLight(AmbientLight ambientLight){
+        this.ambientLight=ambientLight;
         return this;
     }
 
-    public Scene setGeometries(Geometries _geometries){
-        geometries=_geometries;
+    public Scene setGeometries(Geometries geometries){
+        this.geometries=geometries;
         return this;
     }
 

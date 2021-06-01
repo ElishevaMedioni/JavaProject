@@ -25,29 +25,29 @@ public class Camera {
 
     /**
      * Camera constructor, normalize vectors vTo & vUp and calculate vRight with crossProduct
-     * @param _p0 the point of the location of the camera
-     * @param _vTo vector on axis z
-     * @param _vUp vector on axis y
+     * @param p0 the point of the location of the camera
+     * @param vTo vector on axis z
+     * @param vUp vector on axis y
      */
-    public Camera(Point3D _p0,Vector _vTo, Vector _vUp){
-        p0=_p0;
-        if(!isZero(_vTo.dotProduct(_vUp))){
+    public Camera(Point3D p0,Vector vTo, Vector vUp){
+        this.p0=p0;
+        if(!isZero(vTo.dotProduct(vUp))){
             throw new IllegalArgumentException("The vectors vTo and vUp aren't orthogonal");
         }
-        if(_vUp.length()!=1){
-            vUp=_vUp.normalize();
-            if(_vTo.length()!=1)
-                vTo=_vTo.normalize();
+        if(vUp.length()!=1){
+            this.vUp=vUp.normalize();
+            if(vTo.length()!=1)
+                this.vTo=vTo.normalize();
         }
-        else if(_vTo.length()!=1)
-            vTo=_vTo.normalize();
+        else if(vTo.length()!=1)
+            this.vTo=vTo.normalize();
         else {
-            vUp=_vUp;
-            vTo=_vTo;
+            this.vUp=vUp;
+            this.vTo=vTo;
         }
-        vRight=vTo.crossProduct(vUp);
-        if(vRight.length()!=1)
-            vRight=vRight.normalize();
+        this.vRight=this.vTo.crossProduct(this.vUp);
+        if(this.vRight.length()!=1)
+            this.vRight=this.vRight.normalize();
 
     }
 
@@ -56,23 +56,23 @@ public class Camera {
 
     /**
      * set the width and the height of the viewplane
-     * @param _width value of the width
-     * @param _height value of the height
+     * @param width value of the width
+     * @param height value of the height
      * @return the Camera with width and height set
      */
-    public Camera setViewPlaneSize(double _width, double _height){
-        width=_width;
-        height=_height;
+    public Camera setViewPlaneSize(double width, double height){
+        this.width=width;
+        this.height=height;
         return this;
     }
 
     /**
      * set the distance of the camera
-     * @param _distance value of the distance of the camera to the viewplane
+     * @param distance value of the distance of the camera to the viewplane
      * @return the camera with the distance set
      */
-    public Camera setDistance(double _distance){
-        distance=_distance;
+    public Camera setDistance(double distance){
+        this.distance=distance;
         return this;
     }
 

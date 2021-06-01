@@ -51,20 +51,20 @@ public class Ray {
 
     /**
      * ray constructor receiving the point3D and the vector
-     * @param _p0 the point3D value
-     * @param _dir the vector value
+     * @param p0 the point3D value
+     * @param dir the vector value
      */
-    public Ray(Point3D _p0, Vector _dir) {
-        if (_dir.length()!=1)
-            _dir = _dir.normalized();
+    public Ray(Point3D p0, Vector dir) {
+        if (dir.length()!=1)
+            dir = dir.normalized();
 
-        p0 = _p0;
-        dir = _dir;
+        this.p0 = p0;
+        this.dir = dir;
     }
 
     public Ray(Point3D p, Vector dir, Vector n) {
         Vector delta = n.scale(n.dotProduct(dir)     > 0 ? DELTA : -DELTA);
-        p0 = p.add(delta);
+        this.p0 = p.add(delta);
         this.dir=dir;
     }
 

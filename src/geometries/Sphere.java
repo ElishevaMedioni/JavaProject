@@ -23,10 +23,10 @@ public class Sphere extends Geometry {
     private double radius;
 
     //CONSTRUCTOR
-    public Sphere(Point3D point3D, double _radius)
+    public Sphere(Point3D center, double radius)
     {
-        center=point3D;
-        radius=_radius;
+        this.center=center;
+        this.radius=radius;
     }
 
     //GETTER

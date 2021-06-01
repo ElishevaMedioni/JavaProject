@@ -21,11 +21,11 @@ public abstract class Geometry implements Intersectable{
 
     /**
      * set the value of the color
-     * @param _emission value of the color of the geometry
+     * @param emission value of the color of the geometry
      * @return the object (builder design pattern)
      */
-    public Geometry setEmission(Color _emission){
-         emission=_emission;
+    public Geometry setEmission(Color emission){
+        this.emission=emission;
         return this;
     }
 
