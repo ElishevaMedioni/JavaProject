@@ -41,7 +41,7 @@ public class RayTracerBasic extends RayTracerBase{
         Ray lightRay = new Ray(geoPoint.point, lightDirection, n);
         //if there is intersection -> there is shadow
         List<Intersectable.GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
-        if(intersections == null) return 1.0;
+        if(intersections == null) return 1.0; //no shadow
         double lightDistance = light.getDistance(geoPoint.point);
         double ktr=1.0;
         //checking if the intersections are behind the camera (there is no shadow)
@@ -69,7 +69,7 @@ public class RayTracerBasic extends RayTracerBase{
 
     /**
      * diffusive reflection is the reflection of the lightfrom a surface such that a ray incident on the surface is scattered
-     * at many angles rather than at just one   ngle
+     * at many angles rather than at just one angle
      * @param kD coefficient
      * @param l vector light and object
      * @param n normal of the object

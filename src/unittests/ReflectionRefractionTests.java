@@ -177,7 +177,7 @@ public class ReflectionRefractionTests {
 							.setMaterial(new Material().setKT(0.6).setNShininess(200).setKR(0.4)),
 				//mars
 				new Sphere(new Point3D(-50,50,195), 10d)
-						.setEmission(new Color(153,0,0)),
+						.setEmission(new Color(255,128,0)),
 				//star
 				new Sphere(new Point3D(75,75,0), 0.7d)
 							.setEmission(new Color(255,255,0)),
