@@ -1,5 +1,6 @@
 package renderer;
 
+import elements.Camera;
 import elements.LightSource;
 import geometries.Intersectable;
 import primitives.*;
@@ -15,7 +16,11 @@ public class RayTracerBasic extends RayTracerBase{
     private static final double MIN_CALC_COLOR_K=0.001;
     private static final double INITIAL_K=1.0;
 
-    private boolean unshaded(LightSource light,Vector l, Vector n, Intersectable.GeoPoint geoPoint) {
+    public RayTracerBasic(Scene scene){
+        super(scene);
+    }
+
+    /*private boolean unshaded(LightSource light,Vector l, Vector n, Intersectable.GeoPoint geoPoint) {
         Vector lightDirection = l.scale(-1); //change to the opposite direction of the vector
 
         //if the direction of the vector normal is the same to the direction of the light multiplied by DELTA
@@ -32,7 +37,7 @@ public class RayTracerBasic extends RayTracerBase{
             && gp.geometry.getMaterial().kT==0)
                 return false;
         return true;
-    }
+    }*/
 
     private double transparency(LightSource light,Vector l, Vector n, Intersectable.GeoPoint geoPoint) {
         Vector lightDirection = l.scale(-1); //change to the opposite direction of the vector
@@ -53,9 +58,7 @@ public class RayTracerBasic extends RayTracerBase{
         return ktr;
     }
 
-    public RayTracerBasic(Scene scene){
-        super(scene);
-    }
+
 
     /**
      * calculate the color of the pixel of the image
@@ -210,5 +213,9 @@ public class RayTracerBasic extends RayTracerBase{
                 color=color.add(scene.background.scale(kt));
         }
         return color;
+    }
+
+    public List<Ray> constructBeamRayThroughPixel(int nX, int nY, int j, int i, Camera camera){
+        return null;
     }
 }

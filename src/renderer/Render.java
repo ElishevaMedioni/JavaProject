@@ -3,6 +3,8 @@ package renderer;
 import elements.Camera;
 import primitives.Color;
 import primitives.Ray;
+
+import java.util.List;
 import java.util.MissingResourceException;
 
 public class Render {
@@ -42,14 +44,25 @@ public class Render {
                     "rayTracerBase");
         Ray ray;
         Color color;
+        List<Ray> listOfRays;
         for(int i=0;i<imageWriter.getNx();i++)
             for(int j=0;j<imageWriter.getNy();j++){
-                ray= camera.constructRayThroughPixel(imageWriter.getNx(),imageWriter.getNy(),j,i);
-                color=rayTracerBase.traceRay(ray);
+                color=Color.BLACK;
+                if(!(rayTracerBase instanceof RayTracerSuperSampling)) {
+                    ray = camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
+                    color = rayTracerBase.traceRay(ray);
+                }
+                else{
+                    listOfRays= rayTracerBase.constructBeamRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(),
+                            j,i, camera);
+                    for (int k=0; k<listOfRays.size();k++){
+                        color=color.add(rayTracerBase.traceRay(listOfRays.get(k)));
+                    }
+                    color=color.reduce(listOfRays.size());
+                }
                 imageWriter.writePixel(j,i,color);
             }
     }
-
 
     public void checkMissingImageWriter(){
         if(imageWriter==null)

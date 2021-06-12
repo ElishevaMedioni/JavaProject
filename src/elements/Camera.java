@@ -92,6 +92,12 @@ public class Camera {
         return vTo;
     }
 
+    public double getDistance() { return distance; }
+
+    public double getHeight() { return height; }
+
+    public double getWidth() { return width; }
+
 
     //methods
 

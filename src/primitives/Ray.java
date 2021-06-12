@@ -62,8 +62,14 @@ public class Ray {
         this.dir = dir;
     }
 
+    /**
+     * new ray constructor, changing the head of the ray (p0) in the normal direction with DELTA
+     * @param p head of the ray
+     * @param dir direction of the ray
+     * @param n normal of the geometries
+     */
     public Ray(Point3D p, Vector dir, Vector n) {
-        Vector delta = n.scale(n.dotProduct(dir)     > 0 ? DELTA : -DELTA);
+        Vector delta = n.scale(n.dotProduct(dir) > 0 ? DELTA : -DELTA);
         this.p0 = p.add(delta);
         this.dir=dir;
     }
