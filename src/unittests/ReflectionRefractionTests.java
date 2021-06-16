@@ -314,7 +314,7 @@ public class ReflectionRefractionTests {
 	}
 
 	/**
-	 * Produce a picture
+	 * Produce a picture with the improvement of Super Sampling
 	 */
 	@Test
 	public void FinalPictureWithSS() {
