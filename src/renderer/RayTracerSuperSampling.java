@@ -7,6 +7,8 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 import scene.Scene;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -27,7 +29,7 @@ public class RayTracerSuperSampling extends RayTracerBasic{
      * @param ray value of the ray that goes through a pixel
      * @return the color of a specific point
      */
-    public Color traceRay(Ray ray){return super.traceRay(ray);}
+    public Color traceRay(Ray ray){return null;}
 
     /**
      * constructor, goes to the father constructor
@@ -36,8 +38,41 @@ public class RayTracerSuperSampling extends RayTracerBasic{
         super(scene);
     }
 
+    public Color traceRaySS(Point3D p0, Point3D p1, Point3D p2, Point3D p3, Point3D cameraP0, int level) {
+        List<Color> listColors=new ArrayList<>();
+        List<Point3D> listOfCorners=List.of(p0, p1, p2, p3);
+        Ray ray;
+        for(int i=0; i<4;i++){
+            ray=new Ray(cameraP0, listOfCorners.get(i).subtract(cameraP0).normalized());
+            Intersectable.GeoPoint gp= super.findClosestIntersection(ray);
+            if(gp!=null)
+                listColors.add(super.calcColor(gp,ray));
+            else
+                listColors.add(scene.background);
+        }
+        if((listColors.get(0).equals(listColors.get(1))&&listColors.get(0).equals(listColors.get(2))
+            &&listColors.get(0).equals(listColors.get(3)))||level==0)
+            return listColors.get(0);
+        Point3D midUp=findMiddlePoint(p0, p1);
+        Point3D midDown=findMiddlePoint(p2, p3);
+        Point3D midRight=findMiddlePoint(p2, p1);
+        Point3D midLeft=findMiddlePoint(p0, p3);
+        Point3D center=findMiddlePoint(midRight, midLeft);
+        return traceRaySS(p0, midUp, center, midLeft, cameraP0, level-1).scale(0.25)
+                .add(traceRaySS(midUp, p1, midRight, center, cameraP0, level-1).scale(0.25))
+                .add(traceRaySS(center, midRight, p2, midDown, cameraP0, level-1).scale(0.25))
+                .add(traceRaySS(midLeft, center, midDown, p3, cameraP0, level-1).scale(0.25));
+    }
 
-    public List<Ray> constructBeamRayThroughPixel(int nX, int nY, int j, int i, Camera camera){
+    public Point3D findMiddlePoint(Point3D p1, Point3D p2){
+        double x= (p1.getX()+ p2.getX())/2;
+        double y= (p1.getY()+ p2.getY())/2;
+        double z= (p1.getZ()+ p2.getZ())/2;
+        return new Point3D(x, y, z);
+    }
+
+
+   /* public List<Ray> constructBeamRayThroughPixel(int nX, int nY, int j, int i, Camera camera){
         List<Ray> listOfRays= new ArrayList<>();
         Ray mainRay= camera.constructRayThroughPixel(nX, nY, j, i);
         listOfRays.add(mainRay);
@@ -55,5 +90,5 @@ public class RayTracerSuperSampling extends RayTracerBasic{
             listOfRays.add(new Ray(camera.getP0(), vector));
         }
         return listOfRays;
-    }
+    }*/
 }

@@ -159,7 +159,7 @@ public class RayTracerBasic extends RayTracerBase{
         return new Ray(point, ray.getDir(), n);
     }
 
-    private Intersectable.GeoPoint findClosestIntersection(Ray ray){
+    protected Intersectable.GeoPoint findClosestIntersection(Ray ray){
         List<Intersectable.GeoPoint> list = scene.geometries.findGeoIntersections(ray);
         return list==null ? null:ray.findClosestGeoPoint(list);
     }
@@ -183,7 +183,7 @@ public class RayTracerBasic extends RayTracerBase{
      * external function for calcColor
      * calls the internal function calcColor
      */
-    private Color calcColor(Intersectable.GeoPoint geoPoint, Ray ray){
+    protected Color calcColor(Intersectable.GeoPoint geoPoint, Ray ray){
         return calcColor(geoPoint, ray, MAX_CALC_COLOR_LEVEL, INITIAL_K).add(scene.ambientLight.getIntensity());
     }
 
@@ -215,7 +215,5 @@ public class RayTracerBasic extends RayTracerBase{
         return color;
     }
 
-    public List<Ray> constructBeamRayThroughPixel(int nX, int nY, int j, int i, Camera camera){
-        return null;
-    }
+    public Color traceRaySS(Point3D p0, Point3D p1, Point3D p2, Point3D p3, Point3D cameraP0, int level){return null;}
 }

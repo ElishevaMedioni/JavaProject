@@ -6,6 +6,9 @@ import primitives.Util;
 import primitives.Vector;
 import primitives.Util.*;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import static primitives.Util.isZero;
 
 /**
@@ -20,7 +23,7 @@ public class Camera {
     private Vector vRight;
     private double width;
     private double height;
-    double distance;
+    private double distance;
 
 
     /**
@@ -97,8 +100,6 @@ public class Camera {
     public double getHeight() { return height; }
 
     public double getWidth() { return width; }
-
-
     //methods
 
     /**
@@ -131,8 +132,41 @@ public class Camera {
             pIJ=pIJ.add(vUp.scale(yI));
         Vector vIJ=pIJ.subtract(p0); // vector of the ray
         return new Ray(p0, vIJ);
-
-
     }
 
+    /**
+     * This function will return a list of the 4 corner in a pixel
+     * @param nX Number of columns
+     * @param nY Number of rows
+     * @param j column
+     * @param i row
+     * @return List<Point3D>
+     */
+    public List<Point3D> constructPointsThroughPixel(int nX, int nY, int j, int i){
+
+        //calculate the center of the view plane
+        Point3D pC=p0.add(vTo.scale(distance));
+
+        //calculate the height and the width of each pixel
+        double rY=height/nY;
+        double rX=width/nX;
+
+        //calculate how many meter we have to move up/down and left/right from the center
+        double yI=-(i-(nY-1)/2d)*rY;
+        double xJ=(j-(nX-1)/2d)*rX;
+
+        //to avoid constructing a vector zero
+        Point3D pIJ=pC; //Point3D of the ray
+        if(!isZero(xJ))
+            pIJ=pIJ.add(vRight.scale(xJ));
+        if(!isZero(yI))
+            pIJ=pIJ.add(vUp.scale(yI));
+        List<Point3D> list=new LinkedList<>();
+        double x=pIJ.getX(), y=pIJ.getY(), z=pIJ.getZ();
+        Point3D upL=new Point3D(x-rX/2, y+rY/2, z);
+        Point3D upR=new Point3D(x+rX/2, y+rY/2, z);
+        Point3D downR=new Point3D(x+rX/2, y-rY/2, z);
+        Point3D downL=new Point3D(x-rX/2, y-rY/2, z);
+        return List.of(upL,upR,downR, downL);
+    }
 }
