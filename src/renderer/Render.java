@@ -45,42 +45,6 @@ public class Render {
     /**
      * color every pixel of the image
      * check if none of the field aren't null
-     *//*
-    public void renderImage(){
-        if(imageWriter==null)
-            throw new MissingResourceException("Missing field","UnsupportedOperationException",
-                    "imageWriter");
-        if(camera==null)
-            throw new MissingResourceException("Missing field","UnsupportedOperationException",
-                    "camera");
-        if(rayTracerBase==null)
-            throw new MissingResourceException("Missing field","UnsupportedOperationException",
-                    "rayTracerBase");
-        Ray ray;
-        Color color;
-        List<Ray> listOfRays;
-        for(int i=0;i<imageWriter.getNx();i++)
-            for(int j=0;j<imageWriter.getNy();j++){
-                color=Color.BLACK;
-                if(!(rayTracerBase instanceof RayTracerSuperSampling)) {
-                    ray = camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(), j, i);
-                    color = rayTracerBase.traceRay(ray);
-                }
-                else{
-                    listOfRays= rayTracerBase.constructBeamRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(),
-                            j,i, camera);
-                    for (int k=0; k<listOfRays.size();k++){
-                        color=color.add(rayTracerBase.traceRay(listOfRays.get(k)));
-                    }
-                    color=color.reduce(listOfRays.size());
-                }
-                imageWriter.writePixel(j,i,color);
-            }
-    }*/
-
-    /**
-     * color every pixel of the image
-     * check if none of the field aren't null
      */
     public void renderImage(){
         if (imageWriter == null)
@@ -91,13 +55,13 @@ public class Render {
             throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, RAY_TRACER_COMPONENT);
         Ray ray;
         Color color;
-        List<Ray> listOfRays;
+
         final int nX=imageWriter.getNx();
         final int nY=imageWriter.getNy();
         if(threadsCount==0){
             for(int i=0;i<nX;i++)
                 for(int j=0;j<nY;j++){
-                    color=Color.BLACK;
+
                     if(!(rayTracerBase instanceof RayTracerSuperSampling)) {
                         castRay(nX, nY, j, i);
                     }
@@ -114,16 +78,27 @@ public class Render {
             renderImageThreaded();
     }
 
+    /**
+     * find the 4 corners of the pixel
+     * @param camera
+     * @param ray help find the center of the pixel
+     * @param nX
+     * @param nY
+     * @return list of the corners
+     */
     public List<Point3D> findCornersOfPixel(Camera camera, Ray ray, int nX, int nY){
+
         Point3D mainPoint=ray.getPoint(camera.getDistance());
-        double rX= camera.getWidth()/nX;
-        double rY= camera.getHeight()/nY;
+
+        double rX= camera.getWidth()/nX; //width of the pixel
+        double rY= camera.getHeight()/nY; //height of the pixel
+
         double x=mainPoint.getX(), y=mainPoint.getY(), z=mainPoint.getZ();
         Point3D uL=new Point3D(x-rX/2, y+rY/2, z);
         Point3D uR=new Point3D(x+rX/2, y+rY/2, z);
         Point3D dR=new Point3D(x+rX/2, y-rY/2, z);
         Point3D dL=new Point3D(x-rX/2, y-rY/2, z);
-        return List.of(uL, uR, dR, dR);
+        return List.of(uL, uR, dR, dL);
     }
 
     public void checkMissingImageWriter(){
@@ -137,16 +112,6 @@ public class Render {
      * @param interval value of the interval
      * @param color
      */
-   /* public void printGrid(int interval, Color color){
-        checkMissingImageWriter();
-        for(int i=0;i<imageWriter.getNx();i++)
-            for(int j=0;j<imageWriter.getNy();j++){
-                if(i%interval==0 || j%interval==0)
-                    imageWriter.writePixel(i,j, color);
-            }
-        imageWriter.writeToImage();
-    }*/
-
     public void printGrid(int interval, Color color){
         if (imageWriter == null)
             throw new MissingResourceException(RESOURCE_ERROR, RENDER_CLASS, IMAGE_WRITER_COMPONENT);
@@ -159,13 +124,6 @@ public class Render {
         imageWriter.writeToImage();
     }
 
-   /* *//**
-     * checking that the image exist and then print the image on a file
-     *//*
-    public void writeToImage(){
-        checkMissingImageWriter();
-        imageWriter.writeToImage();
-    }*/
 
     /**
      * Produce a rendered image file
@@ -178,7 +136,7 @@ public class Render {
     }
 
 
-    /**============================================================================================*/
+    /**======================================THREADS & PIXEL CLASS======================================*/
 
 
 

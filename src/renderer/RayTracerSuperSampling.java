@@ -7,7 +7,6 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 import scene.Scene;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -38,10 +37,21 @@ public class RayTracerSuperSampling extends RayTracerBasic{
         super(scene);
     }
 
+    /**
+     * function that return the average of the color of 64 rays, improvement with recursive call
+     * @param p0 corner upLeft
+     * @param p1 corner upRight
+     * @param p2 corner downRight
+     * @param p3 corner downLeft
+     * @param cameraP0 camera position
+     * @param level level of the recursion
+     * @return the average of the colors of the rays
+     */
     public Color traceRaySS(Point3D p0, Point3D p1, Point3D p2, Point3D p3, Point3D cameraP0, int level) {
         List<Color> listColors=new ArrayList<>();
         List<Point3D> listOfCorners=List.of(p0, p1, p2, p3);
         Ray ray;
+
         for(int i=0; i<4;i++){
             ray=new Ray(cameraP0, listOfCorners.get(i).subtract(cameraP0).normalized());
             Intersectable.GeoPoint gp= super.findClosestIntersection(ray);
@@ -50,24 +60,34 @@ public class RayTracerSuperSampling extends RayTracerBasic{
             else
                 listColors.add(scene.background);
         }
-        if((listColors.get(0).equals(listColors.get(1))&&listColors.get(0).equals(listColors.get(2))
-            &&listColors.get(0).equals(listColors.get(3)))||level==0)
+    // condition for stopping the recursion
+        if((listColors.get(0).equals(listColors.get(1)) && listColors.get(0).equals(listColors.get(2))
+            && listColors.get(0).equals(listColors.get(3))) || level==0)
             return listColors.get(0);
+
         Point3D midUp=findMiddlePoint(p0, p1);
         Point3D midDown=findMiddlePoint(p2, p3);
         Point3D midRight=findMiddlePoint(p2, p1);
         Point3D midLeft=findMiddlePoint(p0, p3);
         Point3D center=findMiddlePoint(midRight, midLeft);
+
+        // recursive call, call the function 4 times (corners square)
         return traceRaySS(p0, midUp, center, midLeft, cameraP0, level-1).scale(0.25)
                 .add(traceRaySS(midUp, p1, midRight, center, cameraP0, level-1).scale(0.25))
                 .add(traceRaySS(center, midRight, p2, midDown, cameraP0, level-1).scale(0.25))
                 .add(traceRaySS(midLeft, center, midDown, p3, cameraP0, level-1).scale(0.25));
     }
 
+    /**
+     * help function to find the middle point between 2 points
+     * @param p1 point1
+     * @param p2 point2
+     * @return middle point
+     */
     public Point3D findMiddlePoint(Point3D p1, Point3D p2){
-        double x= (p1.getX()+ p2.getX())/2;
-        double y= (p1.getY()+ p2.getY())/2;
-        double z= (p1.getZ()+ p2.getZ())/2;
+        double x= (p1.getX()+ p2.getX())/2d;
+        double y= (p1.getY()+ p2.getY())/2d;
+        double z= (p1.getZ()+ p2.getZ())/2d;
         return new Point3D(x, y, z);
     }
 
