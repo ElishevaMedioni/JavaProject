@@ -1,6 +1,7 @@
 # JavaProject
 <h1>3D image renderer in Java: </h1>
-<img src="https://raw.githubusercontent.com/ElishevaMedioni/JavaProject/master/images/moonWithSS.png?token=ARP7WUMJI7PDCQPFLIGC6M3A2R2WI"/>
+
+![moonWithSS](https://user-images.githubusercontent.com/73399121/123261699-bdbd9780-d4ff-11eb-9257-450a24f6242e.png)
 
 <h4> Creating 3D images in Java using agile and test-driven software development methodologies. </h4>
 
